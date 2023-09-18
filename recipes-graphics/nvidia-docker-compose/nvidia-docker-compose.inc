@@ -7,4 +7,4 @@ S = "${WORKDIR}/git"
 
 RDEPENDS:${PN} = " nvidia-docker"
 
-inherit setuptools
+inherit setuptools3

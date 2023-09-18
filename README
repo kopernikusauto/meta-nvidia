@@ -53,13 +53,13 @@ This layer depends on:
 
   URI: git://git.yoctoproject.org/poky
   layers: meta
-  branch: pyro
+  branch: mickledore
 
   URI: git://git.yoctoproject.org/meta-openembedded
   layers: meta-oe
-  branch: pyro
+  branch: mickledore
 
   URI: git://git.yoctoproject.org/meta-virtualization
   layers: meta-virtualization
-  branch: pyro
+  branch: mickledore
 
