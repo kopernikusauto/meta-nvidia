@@ -10,11 +10,11 @@ S = "${WORKDIR}/git"
 
 EXTRA_OEMAKE:append = " NV_DOCKER=/usr/bin/docker"
 
-do_compile_append() {
+do_compile:append() {
     oe_runmake tarball
 }
 
-do_install_append() {
+do_install:append() {
     tar -C ${S} -xJvf ${S}/dist/nvidia-docker_1.0.1_amd64.tar.xz
     install -D -m 755 ${S}/nvidia-docker/nvidia-docker ${D}${bindir}/nvidia-docker
     install -D -m 755 ${S}/nvidia-docker/nvidia-docker-plugin ${D}${bindir}/nvidia-docker-plugin

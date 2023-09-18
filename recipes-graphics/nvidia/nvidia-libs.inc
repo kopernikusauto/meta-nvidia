@@ -1,7 +1,7 @@
 # Jesus fuck, this is complicated.
 # Read this first: https://devtalk.nvidia.com/default/topic/915640/unix-graphics-announcements-and-news/multiple-glx-client-libraries-in-the-nvidia-linux-driver-installer-package/
 
-do_install_append() {
+do_install:append() {
 	mkdir -p ${D}${libdir}/xorg/modules/drivers \
 	         ${D}${libdir}/xorg/modules/extensions
 
@@ -63,7 +63,7 @@ do_install_append() {
     install -m 444 -D ${NVIDIA_SRC}/nvidia-persistenced.1.gz ${D}${mandir}/man1/nvidia-persistenced.1.gz
 }
 
-python populate_packages_prepend() {
+python populate_packages:prepend() {
     d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-23")
 }
 

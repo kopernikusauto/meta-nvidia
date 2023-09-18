@@ -7,7 +7,7 @@ PACKAGES:remove = "libgl-mesa libgl-mesa-dev libegl-mesa libegl-mesa-dev libgles
 PROVIDES:remove = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
 
 # We ONLY want glx
-do_install_append() {
+do_install:append() {
 	rm -rf ${D}${includedir}/GL
 	rm -rf ${D}${includedir}/GLES
 	rm -rf ${D}${includedir}/KHR

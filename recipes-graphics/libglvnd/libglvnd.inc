@@ -19,7 +19,7 @@ inherit autotools pkgconfig
 PROVIDES = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
 RPROVIDES:${PN} = "libgl libgles1 libgles2 libegl egl xserver-xorg-extension-glx"
 
-do_install_append() {
+do_install:append() {
 	mkdir -p ${D}${includedir}
 	cp -r ${S}/include/GL ${D}${includedir}/
 	cp -r ${S}/include/KHR ${D}${includedir}/
