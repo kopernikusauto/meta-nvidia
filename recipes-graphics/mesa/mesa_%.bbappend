@@ -22,9 +22,9 @@ do_install:append() {
 	rm -f ${D}${libdir}/libGLESv2.so
 }
 
-FILES:libglx-mesa:append = " \
-	${libdir}/libGLX_mesa.so.0.0.0 \
-"
+# FILES:libglx-mesa:append = " \
+# 	${libdir}/libGLX_mesa.so.0.0.0 \
+# "
 
 # FILES:libglx-mesa-dev:append = " \
 #	${libdir}/libGLX_mesa.so.0 \
