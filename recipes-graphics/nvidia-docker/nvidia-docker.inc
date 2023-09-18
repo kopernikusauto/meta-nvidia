@@ -8,7 +8,7 @@ SRC_URI = " \
 
 S = "${WORKDIR}/git"
 
-EXTRA_OEMAKE_append = " NV_DOCKER=/usr/bin/docker"
+EXTRA_OEMAKE:append = " NV_DOCKER=/usr/bin/docker"
 
 do_compile_append() {
     oe_runmake tarball
@@ -22,14 +22,14 @@ do_install_append() {
 }
 
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "nvidia-docker.service"
+SYSTEMD_SERVICE:${PN} = "nvidia-docker.service"
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     ${bindir} \
     ${systemd_unitdir} \
 "
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     docker \
     libcap-bin \
     nvidia \

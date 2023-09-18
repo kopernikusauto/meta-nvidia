@@ -1,6 +1,6 @@
 SUMMARY = "The GL Vendor-Neutral Dispatch library"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI = " \
 	git://github.com/NVIDIA/libglvnd.git;protocol=https \
@@ -17,7 +17,7 @@ DEPENDS = "python libx11 libxext glproto"
 inherit autotools pkgconfig
 
 PROVIDES = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
-RPROVIDES_${PN} = "libgl libgles1 libgles2 libegl egl xserver-xorg-extension-glx"
+RPROVIDES:${PN} = "libgl libgles1 libgles2 libegl egl xserver-xorg-extension-glx"
 
 do_install_append() {
 	mkdir -p ${D}${includedir}

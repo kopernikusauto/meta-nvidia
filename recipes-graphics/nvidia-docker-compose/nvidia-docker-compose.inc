@@ -5,6 +5,6 @@ LICENSE = "MIT"
 SRC_URI = "git://github.com/eywalker/nvidia-docker-compose.git;protocol=https"
 S = "${WORKDIR}/git"
 
-RDEPENDS_${PN} += " nvidia-docker"
+RDEPENDS:${PN} = " nvidia-docker"
 
 inherit setuptools
