@@ -24,12 +24,12 @@ do_install:append() {
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE:${PN} = "nvidia-docker.service"
 
-FILES:${PN} += " \
+FILES:${PN}:append= " \
     ${bindir} \
     ${systemd_unitdir} \
 "
 
-RDEPENDS:${PN} += " \
+RDEPENDS:${PN}:append= " \
     docker \
     libcap-bin \
     nvidia \

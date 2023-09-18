@@ -71,22 +71,22 @@ do_make_scripts[noexec] = "1"
 
 REQUIRED_DISTRO_FEATURES = "x11"
 
-FILES:${PN} += " \
+FILES:${PN}:append= " \
 	${libdir} \
 	${bindir} \
 "
 
-FILES:${PN}-doc += " \
+FILES:${PN}-doc:append= " \
 	${mandir} \
 	${datadir}/doc/nvidia \
 "
 
-RDEPENDS:${PN} += " \
+RDEPENDS:${PN}:append= " \
 	xserver-xorg-module-libwfb \
     libvdpau \
 "
 
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
-INSANE_SKIP:${PN}:ppend = "ldflags already-stripped"
+INSANE_SKIP:${PN}:append = "ldflags already-stripped"
 INSANE_SKIP_libgl-nvidia:append = "ldflags"
