@@ -17,6 +17,7 @@ DEPENDS = "python libx11 libxext glproto"
 inherit autotools pkgconfig
 
 PROVIDES = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
+# PROVIDES = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl"
 RPROVIDES:${PN} = "libgl libgles1 libgles2 libegl egl xserver-xorg-extension-glx"
 
 do_install:append() {

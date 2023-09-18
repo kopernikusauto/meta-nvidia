@@ -1,8 +1,8 @@
 PACKAGECONFIG[glvnd] = "--enable-libglvnd,--disable-libglvnd,libglvnd"
 PACKAGECONFIG:append = " glvnd"
 
-PACKAGES:append = " libglx-mesa libglx-mesa-dev"
-PACKAGES:remove = "libgl-mesa libgl-mesa-dev libegl-mesa libegl-mesa-dev libgles1-mesa libgles1-mesa-dev libgles2-mesa libgles2-mesa-dev"
+PACKAGES:append = " libglx-mesa"
+PACKAGES:remove = "libgl-mesa libegl-mesa libgles1-mesa libgles2-mesa"
 
 PROVIDES:remove = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
 
@@ -26,8 +26,8 @@ FILES:libglx-mesa:append = " \
 	${libdir}/libGLX_mesa.so.0.0.0 \
 "
 
-FILES:libglx-mesa-dev:append = " \
-	${libdir}/libGLX_mesa.so.0 \
-	${libdir}/libGLX_mesa.so \
-"
-RDEPENDS:libglx-mesa-dev:append = " libglx-mesa"
+# FILES:libglx-mesa-dev:append = " \
+#	${libdir}/libGLX_mesa.so.0 \
+#	${libdir}/libGLX_mesa.so \
+# "
+#RDEPENDS:libglx-mesa-dev:append = " libglx-mesa"
