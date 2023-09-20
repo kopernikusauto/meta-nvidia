@@ -1,0 +1,11 @@
+diff --git a/Makefile b/Makefile
+index 826fba9..710db0f 100755
+--- a/Makefile
++++ b/Makefile
+@@ -22,5 +22,5 @@
+ all clean clobber install:
+ 	@$(MAKE) -C src  $@
+ 	@$(MAKE) -C samples $@
+-	@$(MAKE) -C doc $@
++#	@$(MAKE) -C doc $@
+ 

@@ -2,3 +2,6 @@
 # we want to avoid because we're using libglvnd
 
 PACKAGECONFIG:remove = "glx dri glamor xwayland"
+
+#add xinerama option to build with xinerama extension
+PACKAGECONFIG:append = " xinerama"

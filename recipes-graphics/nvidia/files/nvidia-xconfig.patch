@@ -1,0 +1,62 @@
+diff --git a/Makefile b/Makefile
+index 1d6172b..5c68b7b 100755
+--- a/Makefile
++++ b/Makefile
+@@ -48,15 +48,15 @@ NVIDIA_XCONFIG_VERSION := $(NVIDIA_VERSION)
+ 
+ MANPAGE_GZIP ?= 1
+ 
+-MANPAGE_not_gzipped  = $(OUTPUTDIR)/nvidia-xconfig.1
+-MANPAGE_gzipped      = $(OUTPUTDIR)/nvidia-xconfig.1.gz
+-ifeq ($(MANPAGE_GZIP),1)
+-  MANPAGE            = $(MANPAGE_gzipped)
+-else
+-  MANPAGE            = $(MANPAGE_not_gzipped)
+-endif
+-GEN_MANPAGE_OPTS   = $(OUTPUTDIR_ABSOLUTE)/gen-manpage-opts
+-OPTIONS_1_INC      = $(OUTPUTDIR)/options.1.inc
++#MANPAGE_not_gzipped  = $(OUTPUTDIR)/nvidia-xconfig.1
++#MANPAGE_gzipped      = $(OUTPUTDIR)/nvidia-xconfig.1.gz
++#ifeq ($(MANPAGE_GZIP),1)
++#  MANPAGE            = $(MANPAGE_gzipped)
++#else
++#  MANPAGE            = $(MANPAGE_not_gzipped)
++#endif
++#GEN_MANPAGE_OPTS   = $(OUTPUTDIR_ABSOLUTE)/gen-manpage-opts
++#OPTIONS_1_INC      = $(OUTPUTDIR)/options.1.inc
+ 
+ 
+ ##############################################################################
+@@ -133,32 +133,3 @@ clean clobber:
+ ##############################################################################
+ # Documentation
+ ##############################################################################
+-
+-AUTO_TEXT = ".\\\" WARNING: THIS FILE IS AUTO-GENERATED!  Edit $< instead."
+-
+-doc: $(MANPAGE)
+-
+-GEN_MANPAGE_OPTS_SRC  = gen-manpage-opts.c
+-GEN_MANPAGE_OPTS_SRC += $(COMMON_UTILS_DIR)/gen-manpage-opts-helper.c
+-
+-GEN_MANPAGE_OPTS_OBJS = $(call BUILD_OBJECT_LIST,$(GEN_MANPAGE_OPTS_SRC))
+-
+-$(foreach src, $(GEN_MANPAGE_OPTS_SRC), \
+-    $(eval $(call DEFINE_OBJECT_RULE,HOST,$(src))))
+-
+-$(GEN_MANPAGE_OPTS): $(GEN_MANPAGE_OPTS_OBJS)
+-	$(call quiet_cmd,HOST_LINK) \
+-	    $(HOST_CFLAGS) $(HOST_LDFLAGS) $(HOST_BIN_LDFLAGS) $^ -o $@
+-
+-$(OPTIONS_1_INC): $(GEN_MANPAGE_OPTS)
+-	@$< > $@
+-
+-$(MANPAGE_not_gzipped): nvidia-xconfig.1.m4 $(OPTIONS_1_INC) $(VERSION_MK)
+-	$(call quiet_cmd,M4) -D__HEADER__=$(AUTO_TEXT) -I $(OUTPUTDIR) \
+-	  -D__VERSION__=$(NVIDIA_VERSION) \
+-	  -D__DATE__="`$(DATE) +%F`" \
+-	  -D__BUILD_OS__=$(TARGET_OS) \
+-	  $< > $@
+-
+-$(MANPAGE_gzipped): $(MANPAGE_not_gzipped)
+-	$(GZIP_CMD) -9f < $< > $@

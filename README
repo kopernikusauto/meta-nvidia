@@ -22,7 +22,7 @@ following to your BSP, distro, or local config:
       ${XSERVER_X86_MODESETTING} \
       nvidia"
   DISTRO_FEATURES:append = " x11 opengl"
-  DISTRO_FEATURES_remove = " wayland"
+  DISTRO_FEATURES:remove = " wayland"
 
 Optionally, add the nvidia-docker and nvidia-docker-compose packages if you
 desire that functionality.
@@ -53,13 +53,13 @@ This layer depends on:
 
   URI: git://git.yoctoproject.org/poky
   layers: meta
-  branch: mickledore
+  branch: pyro
 
   URI: git://git.yoctoproject.org/meta-openembedded
   layers: meta-oe
-  branch: mickledore
+  branch: pyro
 
   URI: git://git.yoctoproject.org/meta-virtualization
   layers: meta-virtualization
-  branch: mickledore
+  branch: pyro
 
