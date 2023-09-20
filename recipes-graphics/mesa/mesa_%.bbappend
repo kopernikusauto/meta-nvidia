@@ -1,7 +1,7 @@
 PACKAGECONFIG[glvnd] = "--enable-libglvnd,--disable-libglvnd,libglvnd"
 PACKAGECONFIG:append = " glvnd"
 
-PACKAGES:append = " libglx-mesa"
+PACKAGES:append = " libglx-mesa libglx-mesa-dev"
 PACKAGES:remove = "libgl-mesa libegl-mesa libgles1-mesa libgles2-mesa"
 
 PROVIDES:remove = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
