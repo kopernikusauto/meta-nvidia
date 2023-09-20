@@ -1,7 +1,7 @@
 PACKAGECONFIG[glvnd] = "--enable-libglvnd,--disable-libglvnd,libglvnd"
 PACKAGECONFIG:append = " glvnd"
 
-# PACKAGES:append = " libglx-mesa"
+PACKAGES:append = " libglx-mesa"
 PACKAGES:remove = "libgl-mesa libegl-mesa libgles1-mesa libgles2-mesa"
 
 PROVIDES:remove = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
@@ -22,12 +22,12 @@ do_install:append() {
 	rm -f ${D}${libdir}/libGLESv2.so
 }
 
-# FILES:libglx-mesa:append = " \
-# 	${libdir}/libGLX_mesa.so.0.0.0 \
-# "
+FILES:libglx-mesa:append = " \
+ 	${libdir}/libGLX_mesa.so.0.0.0 \
+"
 
-# FILES:libglx-mesa-dev:append = " \
-#	${libdir}/libGLX_mesa.so.0 \
-#	${libdir}/libGLX_mesa.so \
-# "
-#RDEPENDS:libglx-mesa-dev:append = " libglx-mesa"
+FILES:libglx-mesa-dev:append = " \
+	${libdir}/libGLX_mesa.so.0 \
+	${libdir}/libGLX_mesa.so \
+"
+RDEPENDS:libglx-mesa-dev:append = " libglx-mesa"
