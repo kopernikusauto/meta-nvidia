@@ -1,5 +1,6 @@
 # PACKAGECONFIG[glvnd] = "--enable-libglvnd,--disable-libglvnd,libglvnd"
-PACKAGECONFIG[glvnd] = "-Dglvnd=true, libglvnd"
+PACKAGECONFIG[glvnd] = "-Dglvnd=true, -Dglvnd=false, libglvnd"
+PACKAGECONFIG[egl] = "-Degl=enabled, -Degl=disabled"
 PACKAGECONFIG:append = " glvnd"
 
 #PACKAGES:append = " libglx-mesa libglx-mesa-dev"
