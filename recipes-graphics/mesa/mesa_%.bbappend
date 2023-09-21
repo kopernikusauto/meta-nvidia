@@ -32,8 +32,9 @@ FILES_libglx-mesa:append = " \
 	${libdir}/libGLX_mesa.so.0.0.0 \
 "
 
-FILES_libglx-mesa-dev:append = " \
-	${libdir}/libGLX_mesa.so.0 \
-	${libdir}/libGLX_mesa.so \
-"
-RDEPENDS_libglx-mesa-dev:append = " libglx-mesa"
+# FILES_libglx-mesa-dev:append = " \
+#	${libdir}/libGLX_mesa.so.0 \
+#	${libdir}/libGLX_mesa.so \
+# "
+
+# RDEPENDS_libglx-mesa-dev:append = " libglx-mesa"
