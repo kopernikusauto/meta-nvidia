@@ -15,7 +15,7 @@ S = "${NVIDIA_SRC}/kernel"
 # rm -rf ${NVIDIA_SRC}
 do_unpack() {
 	chmod +x ${DL_DIR}/NVIDIA-Linux-x86_64-460.106.00.run
-	
+	rm -rf ${NVIDIA_SRC}
 	${DL_DIR}/NVIDIA-Linux-x86_64-460.106.00.run -x --target ${NVIDIA_SRC}
 }
 
