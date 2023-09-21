@@ -40,3 +40,5 @@ FILES_libglx-mesa:append = " \
 # "
 
 # RDEPENDS_libglx-mesa-dev:append = " libglx-mesa"
+PACKAGECONFIG:append:pn-mesa-native = " egl"
+
