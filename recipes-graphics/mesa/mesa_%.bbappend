@@ -7,7 +7,8 @@ PACKAGECONFIG:append = " glvnd"
 # PACKAGES += "libglx-mesa libglx-mesa-dev"
 PACKAGES:remove = "libgl-mesa libgl-mesa-dev libegl-mesa libegl-mesa-dev libgles1-mesa libgles1-mesa-dev libgles2-mesa libgles2-mesa-dev libgles3-mesa libgles3-mesa-dev"
 
-PROVIDES:remove = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/libgles3 virtual/egl virtual/egl-native virtual/mesa"
+PROVIDES:remove = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/libgles3 virtual/egl virtual/mesa"
+PROVIDES += "virtual/egl-native"
 # PROVIDES_remove += "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/libgles3 virtual/egl virtual/egl-native virtual/mesa"
 
 # We ONLY want glx
