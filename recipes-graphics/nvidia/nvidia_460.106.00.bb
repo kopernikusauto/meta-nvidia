@@ -17,9 +17,9 @@ do_precompile(){
         ln -sf $header ${S}/$(basename $header)
     done
 }
-do_compile:prepend() {
-    for header in ${STAGING_INCDIR_NATIVE}/../lib/x86_64-kos-linux/gcc/x86_64-kos-linux/12.3.0/include/*.h; do
-        ln -sf $header ${S}/$(basename $header)
-    done
-}
+#do_compile:prepend() {
+#    for header in ${STAGING_INCDIR_NATIVE}/../lib/x86_64-kos-linux/gcc/x86_64-kos-linux/12.3.0/include/*.h; do
+#        ln -sf $header ${S}/$(basename $header)
+#    done
+#}
 addtask do_precompile before do_compile after do_configure
