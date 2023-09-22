@@ -12,5 +12,9 @@ DEPENDS += "glibc"
 #     ln -sf ${STAGING_INCDIR}/linux/stdarg.h ${STAGING_INCDIR}/stdarg.h
 #     ln -s ${STAGING_INCDIR}/linux/stdarg.h ${S}/stdarg.h
 # }
-
-# addtask do_precompile before do_compile after do_configure
+do_compile_prepend() {
+    for header in ${STAGING_INCDIR_NATIVE}/../lib/x86_64-kos-linux/gcc/x86_64-kos-linux/12.3.0/include/*.h; do
+        ln -sf $header ${S}/$(basename $header)
+    done
+}
+addtask do_precompile before do_compile after do_configure

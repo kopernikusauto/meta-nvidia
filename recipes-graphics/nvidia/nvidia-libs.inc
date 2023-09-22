@@ -1,4 +1,3 @@
-# Jesus fuck, this is complicated.
 # Read this first: https://devtalk.nvidia.com/default/topic/915640/unix-graphics-announcements-and-news/multiple-glx-client-libraries-in-the-nvidia-linux-driver-installer-package/
 
 do_install:append() {
