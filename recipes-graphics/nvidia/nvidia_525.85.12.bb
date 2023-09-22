@@ -2,8 +2,8 @@ include nvidia-base.inc
 include nvidia-kernel-module.inc
 include nvidia-libs.inc
 
-SRC_URI[md5sum] = "93dc06f289a0157b95093437d5e4d97d"
-SRC_URI[sha256sum] = "28dc6e779d784bc720afed22911920bd77ee39659a6aaa32696a5300ea27e8c4"
+SRC_URI[md5sum] = "93cb0e95485cc2cb5670fc15a5cefe53"
+SRC_URI[sha256sum] = "423b1d078e6385182f48c6e201e834b2eea193a622e04d613aa2259fce6e2266"
 
 # DEPENDS += "glibc"
 # do_precompile() {
