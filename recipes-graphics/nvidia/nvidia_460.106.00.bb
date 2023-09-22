@@ -7,8 +7,13 @@ SRC_URI[sha256sum] = "28dc6e779d784bc720afed22911920bd77ee39659a6aaa32696a5300ea
 
 DEPENDS += "glibc"
 do_precompile() {
-    ln -sf ${STAGING_INCDIR}/linux/stddef.h ${STAGING_INCDIR}/stddef.h
-    ln -s ${STAGING_INCDIR}/linux/stddef.h ${S}/stddef.h
+    # ln -sf ${STAGING_INCDIR}/linux/stddef.h ${STAGING_INCDIR}/stddef.h
+    # ln -s ${STAGING_INCDIR}/linux/stddef.h ${S}/stddef.h
+
+    for header in ${STAGING_INCDIR}/linux/*.h; do
+        ln -sf $header ${S}/$(basename $header)
+        ln -sf $header ${STAGING_INCDIR}/$(basename $header)
+    done
 }
 
 addtask do_precompile before do_compile after do_configure
