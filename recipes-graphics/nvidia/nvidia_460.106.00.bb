@@ -12,7 +12,12 @@ DEPENDS += "glibc"
 #     ln -sf ${STAGING_INCDIR}/linux/stdarg.h ${STAGING_INCDIR}/stdarg.h
 #     ln -s ${STAGING_INCDIR}/linux/stdarg.h ${S}/stdarg.h
 # }
-do_compile_prepend() {
+do_precompile(){
+    for header in ${STAGING_INCDIR_NATIVE}/../lib/x86_64-kos-linux/gcc/x86_64-kos-linux/12.3.0/include/*.h; do
+        ln -sf $header ${S}/$(basename $header)
+    done
+}
+do_compile:prepend() {
     for header in ${STAGING_INCDIR_NATIVE}/../lib/x86_64-kos-linux/gcc/x86_64-kos-linux/12.3.0/include/*.h; do
         ln -sf $header ${S}/$(basename $header)
     done
