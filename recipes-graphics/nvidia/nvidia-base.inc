@@ -6,7 +6,7 @@ NVIDIA_ARCHIVE_NAME = "NVIDIA-Linux-${TARGET_ARCH}-${PV}"
 NVIDIA_SRC = "${WORKDIR}/${NVIDIA_ARCHIVE_NAME}"
 # https://us.download.nvidia.com/tesla/${PV}/${NVIDIA_ARCHIVE_NAME}.run
 SRC_URI = " \
-		https://us.download.nvidia.com/tesla/460.106.00/NVIDIA-Linux-x86_64-460.106.00.run \
+		https://us.download.nvidia.com/tesla/525.85.12/NVIDIA-Linux-x86_64-525.85.12.run \
 "
 
 S = "${NVIDIA_SRC}/kernel"
@@ -14,9 +14,9 @@ S = "${NVIDIA_SRC}/kernel"
 # chmod +x ${DL_DIR}/${NVIDIA_ARCHIVE_NAME}.run
 # rm -rf ${NVIDIA_SRC}
 do_unpack() {
-	chmod +x ${DL_DIR}/NVIDIA-Linux-x86_64-460.106.00.run
+	chmod +x ${DL_DIR}/NVIDIA-Linux-x86_64-525.85.12.run
 	rm -rf ${NVIDIA_SRC}
-	${DL_DIR}/NVIDIA-Linux-x86_64-460.106.00.run -x --target ${NVIDIA_SRC}
+	${DL_DIR}/NVIDIA-Linux-x86_64-525.85.12.run -x --target ${NVIDIA_SRC}
 }
 
 do_make_scripts[noexec] = "1"
