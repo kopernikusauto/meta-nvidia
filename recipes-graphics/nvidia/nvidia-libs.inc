@@ -40,7 +40,7 @@ do_install:append() {
 
     # cp ${NVIDIA_SRC}/*.so.* ${D}${libdir}/
     if [ "$(ls ${NVIDIA_SRC}/*.so.* 2> /dev/null)" ]; then
-        cp -pPR ${NVIDIA_SRC}/*.so.* ${D}${libdir}/
+        cp ${NVIDIA_SRC}/*.so.* ${D}${libdir}/
     fi
 
 
