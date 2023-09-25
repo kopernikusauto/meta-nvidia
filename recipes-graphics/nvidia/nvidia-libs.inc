@@ -56,7 +56,7 @@ do_install:append() {
     #cp ${NVIDIA_SRC}/libEGL_nvidia.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libGLESv2_nvidia.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libGLESv1_CM_nvidia.so.${PV} ${D}${libdir}/
-    cp -pPR ${NVIDIA_SRC}/libnvidia-egl-wayland.so.* ${D}${libdir}/
+    #cp -pPR ${NVIDIA_SRC}/libnvidia-egl-wayland.so.* ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libnvidia-rtcore.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libnvidia-cbl.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libnvoptix.so.${PV} ${D}${libdir}/
