@@ -27,8 +27,8 @@ do_install:append() {
     cp ${NVIDIA_SRC}/nvidia_drv.so ${D}${libdir}/xorg/modules/drivers/
     install -m 444 ${NVIDIA_SRC}/nvidia-drm-outputclass.conf ${D}${datadir}/X11/xorg.conf.d/nvidia-drm-outputclass.conf
 
-    cp ${NVIDIA_SRC}/libnvidia-gtk2.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-gtk3.so.${PV} ${D}${libdir}/
+    # cp ${NVIDIA_SRC}/libnvidia-gtk2.so.${PV} ${D}${libdir}/
+    # cp ${NVIDIA_SRC}/libnvidia-gtk3.so.${PV} ${D}${libdir}/
     cp ${NVIDIA_SRC}/libnvidia-cfg.so.${PV} ${D}${libdir}/
     cp ${NVIDIA_SRC}/libnvidia-ml.so.${PV} ${D}${libdir}/
     cp ${NVIDIA_SRC}/libvdpau_nvidia.so.${PV} ${D}${libdir}/vdpau/
@@ -56,7 +56,7 @@ do_install:append() {
     #cp ${NVIDIA_SRC}/libEGL_nvidia.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libGLESv2_nvidia.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libGLESv1_CM_nvidia.so.${PV} ${D}${libdir}/
-    #cp ${NVIDIA_SRC}/libnvidia-egl-wayland.so.1.1.2 ${D}${libdir}/
+    cp ${NVIDIA_SRC}/libnvidia-egl-wayland.so.1.1.2 ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libnvidia-rtcore.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libnvidia-cbl.so.${PV} ${D}${libdir}/
     #cp ${NVIDIA_SRC}/libnvoptix.so.${PV} ${D}${libdir}/
