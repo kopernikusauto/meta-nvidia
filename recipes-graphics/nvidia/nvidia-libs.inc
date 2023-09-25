@@ -3,7 +3,7 @@ python populate_packages:prepend() {
     d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-25")
 }
 
-RDEPENDS_nvidia-settings = " \
+RDEPENDS_nvidia = " \
     cairo \
     gdk-pixbuf \
     glib-2.0 \
