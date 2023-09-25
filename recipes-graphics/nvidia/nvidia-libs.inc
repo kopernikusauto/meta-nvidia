@@ -38,23 +38,29 @@ do_install:append() {
 
     install -m 444 ${NVIDIA_SRC}/nvidia.icd  ${D}${sysconfdir}/OpenCL/vendors/nvidia.icd
 
-    cp ${NVIDIA_SRC}/libnvidia-fatbinaryloader.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-ptxjitcompiler.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvcuvid.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-encode.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-ifr.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-fbc.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-compiler.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-eglcore.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-glsi.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libEGL_nvidia.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libGLESv2_nvidia.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libGLESv1_CM_nvidia.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-egl-wayland.so.1.1.2 ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-rtcore.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-cbl.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvoptix.so.${PV} ${D}${libdir}/
-    cp ${NVIDIA_SRC}/libnvidia-opticalflow.so.${PV} ${D}${libdir}/
+    # cp ${NVIDIA_SRC}/*.so.* ${D}${libdir}/
+    if [ "$(ls ${NVIDIA_SRC}/*.so.* 2> /dev/null)" ]; then
+        cp ${NVIDIA_SRC}/*.so.* ${D}${libdir}/
+    fi
+
+
+    #cp ${NVIDIA_SRC}/libnvidia-fatbinaryloader.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-ptxjitcompiler.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvcuvid.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-encode.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-ifr.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-fbc.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-compiler.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-eglcore.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-glsi.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libEGL_nvidia.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libGLESv2_nvidia.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libGLESv1_CM_nvidia.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-egl-wayland.so.1.1.2 ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-rtcore.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-cbl.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvoptix.so.${PV} ${D}${libdir}/
+    #cp ${NVIDIA_SRC}/libnvidia-opticalflow.so.${PV} ${D}${libdir}/
 
     ln -sf libglxserver_nvidia.so.${PV} ${D}${libdir}/xorg/modules/extensions/libglxserver_nvidia.so
     ln -sf libGLX_nvidia.so.${PV} ${D}${libdir}/libGLX_nvidia.so.0
