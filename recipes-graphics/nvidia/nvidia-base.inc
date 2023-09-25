@@ -11,8 +11,6 @@ SRC_URI = " \
 
 S = "${NVIDIA_SRC}/kernel"
 
-# chmod +x ${DL_DIR}/${NVIDIA_ARCHIVE_NAME}.run
-# rm -rf ${NVIDIA_SRC}
 do_unpack() {
 	chmod +x ${DL_DIR}/NVIDIA-Linux-x86_64-525.85.12.run
 	rm -rf ${NVIDIA_SRC}
