@@ -3,14 +3,15 @@ python populate_packages:prepend() {
     d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-25")
 }
 
-RDEPENDS_nvidia = " \
-    cairo \
-    gdk-pixbuf \
+RDEPENDS:${PN}:remove =  " \
+    libatk \
+    libcairo \ 
+    libgdk-pixbuf \
     glib-2.0 \
-    gtk+ \
-    gtk+3 \
+    libgtk+ \
+    libgtk+3 \
     jansson \
-    pango \
+    libpango \
     cairo \
     libx11 \
     libxxf86vm \
