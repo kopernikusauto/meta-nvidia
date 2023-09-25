@@ -1,4 +1,20 @@
 # Read this first: https://devtalk.nvidia.com/default/topic/915640/unix-graphics-announcements-and-news/multiple-glx-client-libraries-in-the-nvidia-linux-driver-installer-package/
+python populate_packages:prepend() {
+    d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-25")
+}
+
+RDEPENDS_nvidia-settings = " \
+    cairo \
+    gdk-pixbuf \
+    glib-2.0 \
+    gtk+ \
+    gtk+3 \
+    jansson \
+    pango \
+    cairo \
+    libx11 \
+    libxxf86vm \
+    "
 
 do_install:append() {
 	mkdir -p ${D}${libdir}/vdpau \
@@ -27,8 +43,8 @@ do_install:append() {
     cp ${NVIDIA_SRC}/nvidia_drv.so ${D}${libdir}/xorg/modules/drivers/
     install -m 444 ${NVIDIA_SRC}/nvidia-drm-outputclass.conf ${D}${datadir}/X11/xorg.conf.d/nvidia-drm-outputclass.conf
 
-    # cp ${NVIDIA_SRC}/libnvidia-gtk2.so.${PV} ${D}${libdir}/
-    # cp ${NVIDIA_SRC}/libnvidia-gtk3.so.${PV} ${D}${libdir}/
+    cp ${NVIDIA_SRC}/libnvidia-gtk2.so.${PV} ${D}${libdir}/
+    cp ${NVIDIA_SRC}/libnvidia-gtk3.so.${PV} ${D}${libdir}/
     cp ${NVIDIA_SRC}/libnvidia-cfg.so.${PV} ${D}${libdir}/
     cp ${NVIDIA_SRC}/libnvidia-ml.so.${PV} ${D}${libdir}/
     cp ${NVIDIA_SRC}/libvdpau_nvidia.so.${PV} ${D}${libdir}/vdpau/
@@ -134,13 +150,10 @@ do_install:append() {
     install -m 444 -D ${NVIDIA_SRC}/nvidia-persistenced.1.gz ${D}${mandir}/man1/nvidia-persistenced.1.gz
 }
 
-python populate_packages:prepend() {
-    d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-24")
-}
 
 do_make_scripts[noexec] = "1"
 
-REQUIRED_DISTRO_FEATURES = "x11"
+# REQUIRED_DISTRO_FEATURES = "x11"
 
 FILES:${PN}:append= " \
 	${libdir} \
