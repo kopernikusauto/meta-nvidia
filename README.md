@@ -1,6 +1,8 @@
 # Overview
 
 The meta-nvidia layer provides support for NVIDIA graphics drivers and related components for Yocto Project-based distributions. This layer includes recipes for building the NVIDIA binary graphics driver, the GL Vendor-Neutral Dispatch library (libglvnd), and modifications to the mesa package to ensure compatibility with NVIDIA's proprietary drivers.
+
+![loaded-modules](artwork/loaded_modules.png)
 # Contents
 
 - Configuration: The layer.conf file contains the necessary configurations for the layer, including BBPATH, BBFILES, and other essential settings.
