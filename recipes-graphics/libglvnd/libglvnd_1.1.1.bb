@@ -1,4 +1,6 @@
+MAINTAINER = "Nauman Shakir <nshakir@kopernikusauto.com>"
 SUMMARY = "The GL Vendor-Neutral Dispatch library"
+SECTION = "Libraries"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 

@@ -1,4 +1,9 @@
-# Read this first: https://devtalk.nvidia.com/default/topic/915640/unix-graphics-announcements-and-news/multiple-glx-client-libraries-in-the-nvidia-linux-driver-installer-package/
+# Good read: https://devtalk.nvidia.com/default/topic/915640/unix-graphics-announcements-and-news/multiple-glx-client-libraries-in-the-nvidia-linux-driver-installer-package/
+
+DESCRIPTION = "Linker and Installer of Nvidia Kernel modules, libs and binaries"
+SECTION = "Installer Tools"
+MAINTAINER = "Nauman Shakir <nshakir@kopernikusauto.com>"
+
 python populate_packages:prepend() {
     d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-25")
 }
@@ -123,6 +128,18 @@ do_install:append() {
     install -m 444 -D ${NVIDIA_SRC}/nvidia-xconfig.1.gz ${D}${mandir}/man1/nvidia-xconfig.1.gz
     install -m 444 -D ${NVIDIA_SRC}/nvidia-cuda-mps-control.1.gz ${D}${mandir}/man1/nvidia-cuda-mps-control.1.gz
     install -m 444 -D ${NVIDIA_SRC}/nvidia-persistenced.1.gz ${D}${mandir}/man1/nvidia-persistenced.1.gz
+}
+
+
+# Very important fix to allow nvidia-binaries to run
+do_install:append() {
+    if [ ! -d ${D}${libdir} ]; then
+        mkdir -p ${D}${libdir}
+    fi
+
+    if [ ! -e ${D}${libdir}/ld-linux-x86-64.so.2 ]; then
+        ln -s ${D}/lib/ld-linux-x86-64.so.2 ${D}${libdir}/ld-linux-x86-64.so.2
+    fi
 }
 
 
