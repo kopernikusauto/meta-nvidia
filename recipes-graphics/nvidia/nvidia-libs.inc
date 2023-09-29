@@ -151,7 +151,7 @@ do_install:append() {
 #     ls -l ${D}${base_lib64dir}/ld-linux-x86-64.so.2
 # }
 
-# FILES:${PN} +=" ${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
+FILES:${PN} +=" ${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
 
 do_make_scripts[noexec] = "1"
 
@@ -178,5 +178,3 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
 INSANE_SKIP:${PN}:append = "ldflags already-stripped dev-so"
 INSANE_SKIP_libgl-nvidia:append = "ldflags"
-
-addtask do_create_symlink after do_install before do_package
