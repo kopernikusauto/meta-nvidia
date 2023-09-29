@@ -134,24 +134,24 @@ do_install:append() {
 }
 
 
-# Very important fix to allow nvidia-binaries to run
-do_create_symlink() {
-    echo "Debug: Before any operations"
-    ls -l ${D}${base_lib64dir} || echo "${D}${base_lib64dir} does not exist"
-    ls -l ${D}${base_lib64dir}/ld-linux-x86-64.so.2 || echo "${D}${base_lib64dir}/ld-linux-x86-64.so.2 does not exist"
+# # Very important fix to allow nvidia-binaries to run
+# do_create_symlink() {
+#     echo "Debug: Before any operations"
+#     ls -l ${D}${base_lib64dir} || echo "${D}${base_lib64dir} does not exist"
+#     ls -l ${D}${base_lib64dir}/ld-linux-x86-64.so.2 || echo "${D}${base_lib64dir}/ld-linux-x86-64.so.2 does not exist"
 
-    if [ ! -d ${D}${base_lib64dir} ]; then
-        mkdir -p ${D}${base_lib64dir}
-    fi
+#     if [ ! -d ${D}${base_lib64dir} ]; then
+#         mkdir -p ${D}${base_lib64dir}
+#     fi
 
-    ln -sf ${base_libdir}/ld-linux-x86-64.so.2 ${D}${base_lib64dir}/ld-linux-x86-64.so.2
+#     ln -sf ${base_libdir}/ld-linux-x86-64.so.2 ${D}${base_lib64dir}/ld-linux-x86-64.so.2
 
-    echo "Debug: After symlink creation"
-    ls -l ${D}${base_lib64dir}
-    ls -l ${D}${base_lib64dir}/ld-linux-x86-64.so.2
-}
+#     echo "Debug: After symlink creation"
+#     ls -l ${D}${base_lib64dir}
+#     ls -l ${D}${base_lib64dir}/ld-linux-x86-64.so.2
+# }
 
-FILES:${PN} +=" ${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
+# FILES:${PN} +=" ${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
 
 do_make_scripts[noexec] = "1"
 
