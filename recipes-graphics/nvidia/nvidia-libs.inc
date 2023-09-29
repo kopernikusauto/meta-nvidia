@@ -135,7 +135,7 @@ do_install:append() {
 
 
 # Very important fix to allow nvidia-binaries to run
-create_symlink() {
+do_create_symlink() {
     if [ ! -d ${D}${base_lib64dir} ]; then
         mkdir -p ${D}${base_lib64dir}
     fi
@@ -171,4 +171,5 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
 INSANE_SKIP:${PN}:append = "ldflags already-stripped dev-so"
 INSANE_SKIP_libgl-nvidia:append = "ldflags"
-addtask create_symlink after do_install before do_package
+
+addtask do_create_symlink after do_install before do_package
