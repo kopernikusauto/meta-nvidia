@@ -6,6 +6,11 @@ MAINTAINER = "Nauman Shakir <nshakir@kopernikusauto.com>"
 
 base_lib64dir = "/lib64"
 
+python populate_packages:prepend() {
+    d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-25")
+}
+
+
 RDEPENDS:${PN}:remove =  " \
     libatk \
     libcairo \ 
@@ -140,7 +145,7 @@ do_install:append() {
     fi
 }
 
-FILES:${PN}:append= "${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
+FILES:${PN}:append= "${base_lib64dir}/ ${base_lib64dir}/ld-linux-x86-64.so.2"
 
 
 do_make_scripts[noexec] = "1"
