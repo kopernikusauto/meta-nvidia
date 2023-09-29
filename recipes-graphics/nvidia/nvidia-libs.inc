@@ -4,9 +4,7 @@ DESCRIPTION = "Linker and Installer of Nvidia Kernel modules, libs and binaries"
 SECTION = "Installer Tools"
 MAINTAINER = "Nauman Shakir <nshakir@kopernikusauto.com>"
 
-python populate_packages:prepend() {
-    d.appendVar("RDEPENDS_nvidia", " xorg-abi-video-25")
-}
+base_lib64dir = "/lib64"
 
 RDEPENDS:${PN}:remove =  " \
     libatk \
@@ -133,14 +131,15 @@ do_install:append() {
 
 # Very important fix to allow nvidia-binaries to run
 do_install:append() {
-    if [ ! -d ${D}${libdir} ]; then
-        mkdir -p ${D}${libdir}
+    if [ ! -d ${D}${base_lib64dir} ]; then
+        mkdir -p ${D}${base_lib64dir}
     fi
 
-    if [ ! -e ${D}${libdir}/ld-linux-x86-64.so.2 ]; then
-        ln -s ${D}/lib/ld-linux-x86-64.so.2 ${D}${libdir}/ld-linux-x86-64.so.2
+    if [ ! -e ${D}${base_lib64dir}/ld-linux-x86-64.so.2 ]; then
+        ln -s ${base_libdir}/ld-linux-x86-64.so.2 ${D}${base_lib64dir}/ld-linux-x86-64.so.2
     fi
 }
+
 
 
 do_make_scripts[noexec] = "1"

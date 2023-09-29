@@ -6,3 +6,4 @@ DEPENDS:append = " libxshmfence"
 
 #add xinerama option to build with xinerama extension
 PACKAGECONFIG:append = " xinerama"
+RRECOMMENDS:${PN}:append = "xorg-abi-video-25"
