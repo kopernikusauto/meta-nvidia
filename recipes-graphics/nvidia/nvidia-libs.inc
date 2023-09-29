@@ -135,7 +135,7 @@ do_install:append() {
 
 
 # Very important fix to allow nvidia-binaries to run
-do_populate_sysroot:append() {
+create_symlink() {
     if [ ! -d ${D}${base_lib64dir} ]; then
         mkdir -p ${D}${base_lib64dir}
     fi
@@ -144,8 +144,6 @@ do_populate_sysroot:append() {
         ln -s ${base_libdir}/ld-linux-x86-64.so.2 ${D}${base_lib64dir}/ld-linux-x86-64.so.2
     fi
 }
-FILES:${PN}:append= "${base_lib64dir}/ ${base_lib64dir}/ld-linux-x86-64.so.2"
-
 
 
 do_make_scripts[noexec] = "1"
@@ -173,3 +171,4 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
 INSANE_SKIP:${PN}:append = "ldflags already-stripped dev-so"
 INSANE_SKIP_libgl-nvidia:append = "ldflags"
+addtask create_symlink after do_install before do_package
