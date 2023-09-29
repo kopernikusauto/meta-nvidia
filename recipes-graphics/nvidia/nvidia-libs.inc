@@ -140,6 +140,7 @@ do_install:append() {
     fi
 }
 
+FILES:${PN}:append= "${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
 
 
 do_make_scripts[noexec] = "1"
