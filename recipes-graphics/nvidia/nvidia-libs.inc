@@ -136,6 +136,8 @@ do_install:append() {
 
 # Very important fix to allow nvidia-binaries to run
 do_create_symlink() {
+     ls -l ${D}${base_lib64dir}
+    ls -l ${D}${base_lib64dir}/ld-linux-x86-64.so.2
     if [ ! -d ${D}${base_lib64dir} ]; then
         mkdir -p ${D}${base_lib64dir}
     fi
@@ -143,9 +145,11 @@ do_create_symlink() {
     if [ ! -e ${D}${base_lib64dir}/ld-linux-x86-64.so.2 ]; then
         ln -s ${base_libdir}/ld-linux-x86-64.so.2 ${D}${base_lib64dir}/ld-linux-x86-64.so.2
     fi
+     ls -l ${D}${base_lib64dir}
+    ls -l ${D}${base_lib64dir}/ld-linux-x86-64.so.2
 }
 
-FILES:${PN}:append=" ${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
+FILES:${PN} +=" ${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
 
 do_make_scripts[noexec] = "1"
 
