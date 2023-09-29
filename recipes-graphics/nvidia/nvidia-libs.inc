@@ -145,7 +145,7 @@ do_create_symlink() {
     fi
 }
 
-FILES:${PN}:append=" ${base_libdir} ${base_libdir}/ld-linux-x86-64.so.2"
+FILES:${PN}:append=" ${base_lib64dir} ${base_lib64dir}/ld-linux-x86-64.so.2"
 
 do_make_scripts[noexec] = "1"
 
