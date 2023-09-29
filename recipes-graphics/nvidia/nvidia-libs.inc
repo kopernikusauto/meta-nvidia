@@ -135,17 +135,17 @@ do_install:append() {
 
 
 # Very important fix to allow nvidia-binaries to run
-do_install:append() {
+do_populate_sysroot:append() {
     if [ ! -d ${D}${base_lib64dir} ]; then
         mkdir -p ${D}${base_lib64dir}
     fi
 
-    # Create a relative symbolic link
-    ln -srf ${D}${base_libdir}/ld-linux-x86-64.so.2 ${D}${base_lib64dir}/ld-linux-x86-64.so.2
+    if [ ! -e ${D}${base_lib64dir}/ld-linux-x86-64.so.2 ]; then
+        ln -s ${base_libdir}/ld-linux-x86-64.so.2 ${D}${base_lib64dir}/ld-linux-x86-64.so.2
+    fi
 }
-
 FILES:${PN}:append= "${base_lib64dir}/ ${base_lib64dir}/ld-linux-x86-64.so.2"
-INSANE_SKIP:${PN}:append= "libdir"
+
 
 
 do_make_scripts[noexec] = "1"
