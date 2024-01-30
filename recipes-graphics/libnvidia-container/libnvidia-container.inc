@@ -30,7 +30,7 @@ DEPENDS = " \
             pkgconfig-native \
             libcap \
             elfutils \
-            libtirpc \
+            libtirpc126 \
             ldconfig-native \        
             "
 
