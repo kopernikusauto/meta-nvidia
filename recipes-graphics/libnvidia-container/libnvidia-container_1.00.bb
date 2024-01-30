@@ -2,11 +2,17 @@ require libnvidia-container.inc
 
 SUMMARY = "libNVIDIA Container for Yocto"
 
+
+do_compile:prepend() {
+    # Copy bmake from the container's /usr/bin to the working directory
+    install -m 0755 /usr/bin/bmake ${WORKDIR}/bmake
+
+    # Ensure the copied bmake is used during the build
+    export PATH=${WORKDIR}:$PATH
+}
+
 do_compile:prepend() {
     export MAKEFLAGS="-j ${@oe.utils.cpu_count()}"
-
-    # Attempt to use make instead of bmake
-    ln -sf $(which make) ${B}/bmake || true
 }
 
 do_compile:prepend() {
