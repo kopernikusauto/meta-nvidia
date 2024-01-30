@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=f835cce8852481e4b2bbbdd23b5e47f3 \
                     file://src/netname.c;beginline=1;endline=27;md5=f8a8cd2cb25ac5aa16767364fb0e3c24"
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/libtirpc/libtirpc-${PV}.tar.bz2"
-SRC_URI[sha256sum] = "4278e9a5181d5af9cd7885322fdecebc444f9a3da87c526e7d47f7a12a37d1cc"
+SRC_URI[sha256sum] = "1e0b0c7231c5fa122e06c0609a76723664d068b0dba3b8219b63e6340b347860"
 
 # SRC_URI += "file://0001-__rpc_dtbsize-rlim_cur-instead-of-rlim_max.patch"
 
@@ -22,7 +22,7 @@ EXTRA_OECONF = "--disable-gssapi --enable-static"
 do_install:append() {
     rm -r ${D}${sysconfdir} ${D}${datadir} ${D}${libdir}/pkgconfig
     rm ${D}${libdir}/*.so*
-    cp -r ${D}${includedir}/tirpc ${D}${includedir}/tirpc-1.3.3
+    cp -r ${D}${includedir}/tirpc ${D}${includedir}/tirpc-1.3.4
 }
 
 inherit nopackages
