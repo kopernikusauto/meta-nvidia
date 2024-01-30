@@ -52,4 +52,3 @@ do_install() {
 }
 
 FILES_${PN} += "/usr/local/bin /usr/local/lib"
-INSANE_SKIP:${PN}-src = "buildpaths"
