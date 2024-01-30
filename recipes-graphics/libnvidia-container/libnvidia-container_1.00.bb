@@ -4,11 +4,9 @@ SUMMARY = "libNVIDIA Container for Yocto"
 
 do_compile:prepend() {
 
-    # Create a fake lsb_release script
-    echo '#!/bin/sh' > ${WORKDIR}/lsb_release
-    echo 'echo "CentaurusNova"' >> ${WORKDIR}/lsb_release
-    chmod +x ${WORKDIR}/lsb_release
-
+    # get lsb_release
+    install -m 0755 /usr/bin/lsb_release ${WORKDIR}/lsb_release
+    
     # Copy nproc from the container's /usr/bin to the working directory
     install -m 0755 /usr/bin/nproc ${WORKDIR}/nproc
 
