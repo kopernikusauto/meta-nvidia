@@ -4,21 +4,17 @@ SUMMARY = "libNVIDIA Container for Yocto"
 
 do_compile:prepend() {
     # Copy nproc from the container's /usr/bin to the working directory
-    install -m 0755 /usr/bin/nrpoc ${WORKDIR}/bmake
+    install -m 0755 /usr/bin/nrpoc ${WORKDIR}/nproc
     export PATH=${WORKDIR}:$PATH
 
-}
-do_compile:prepend() {
+
     # Copy bmake from the container's /usr/bin to the working directory
     install -m 0755 /usr/bin/bmake ${WORKDIR}/bmake
 
     # Ensure the copied bmake is used during the build
     export PATH=${WORKDIR}:$PATH
-    # Set the number of make jobs to the number of available CPU cores
-    # export MAKEFLAGS="-j ${@oe.utils.cpu_count()}"
-}
-
-do_compile:prepend() {
+    
+    #go fix
     export GOPATH="${WORKDIR}/go"
     export GOCACHE="${WORKDIR}/go-cache"
     mkdir -p ${GOPATH} ${GOCACHE}
