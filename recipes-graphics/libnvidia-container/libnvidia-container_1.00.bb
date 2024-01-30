@@ -2,7 +2,12 @@ require libnvidia-container.inc
 
 SUMMARY = "libNVIDIA Container for Yocto"
 
+do_compile:prepend() {
+    # Copy nproc from the container's /usr/bin to the working directory
+    install -m 0755 /usr/bin/nrpoc ${WORKDIR}/bmake
+    export PATH=${WORKDIR}:$PATH
 
+}
 do_compile:prepend() {
     # Copy bmake from the container's /usr/bin to the working directory
     install -m 0755 /usr/bin/bmake ${WORKDIR}/bmake
