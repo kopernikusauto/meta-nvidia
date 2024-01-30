@@ -22,6 +22,9 @@ do_configure:append() {
 
 do_compile:prepend() {
 
+    export CFLAGS="$CFLAGS -I${STAGING_INCDIR}/tirpc"
+    export LDFLAGS="$LDFLAGS -ltirpc"
+    
     # get lsb_release
     install -m 0755 /usr/bin/lsb_release ${WORKDIR}/lsb_release
 
