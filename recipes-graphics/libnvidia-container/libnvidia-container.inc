@@ -8,4 +8,7 @@ SRCREV = "a4ef85ebc86688eeef667271abbc7cd4f1110cf6"
 
 DEPENDS = "curl-native ca-certificates-native"
 
+CURL_CA_BUNDLE=${STAGING_DIR_NATIVE}/etc/ssl/certs/ca-certificates.crt
+export CURL_CA_BUNDLE
+
 S = "${WORKDIR}/git"
