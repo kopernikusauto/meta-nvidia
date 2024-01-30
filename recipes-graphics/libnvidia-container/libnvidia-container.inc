@@ -15,7 +15,8 @@ NVIDIA_MODPROBE_VERSION = "550.40.07"
 LIBTIRPC_VERSION = "1.3.2"
 
 SRC_URI = "git://github.com/NVIDIA/libnvidia-container.git;protocol=https;branch=main \
-           git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION} \"
+           git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION} \
+           "
 
 # SRCREV = "a4ef85ebc86688eeef667271abbc7cd4f1110cf6"
 SRCREV_libnvidia = "a4ef85ebc86688eeef667271abbc7cd4f1110cf6"
