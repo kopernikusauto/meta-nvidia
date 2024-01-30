@@ -9,9 +9,7 @@ do_compile:prepend() {
 
     # Ensure the copied bmake is used during the build
     export PATH=${WORKDIR}:$PATH
-}
-
-do_compile:prepend() {
+    # Set the number of make jobs to the number of available CPU cores
     export MAKEFLAGS="-j ${@oe.utils.cpu_count()}"
 }
 
