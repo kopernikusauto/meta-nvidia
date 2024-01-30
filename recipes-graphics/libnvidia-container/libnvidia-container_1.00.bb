@@ -4,9 +4,7 @@ SUMMARY = "libNVIDIA Container for Yocto"
 
 do_compile:prepend() {
     # Copy nproc from the container's /usr/bin to the working directory
-    install -m 0755 /usr/bin/nrpoc ${WORKDIR}/nproc
-    export PATH=${WORKDIR}:$PATH
-
+    install -m 0755 /usr/bin/nproc ${WORKDIR}/nproc
 
     # Copy bmake from the container's /usr/bin to the working directory
     install -m 0755 /usr/bin/bmake ${WORKDIR}/bmake
