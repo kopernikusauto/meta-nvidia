@@ -19,7 +19,7 @@ SRC_URI = "git://github.com/NVIDIA/libnvidia-container.git;protocol=https;branch
            "
 
 # SRCREV = "a4ef85ebc86688eeef667271abbc7cd4f1110cf6"
-SRCREV_libnvidia = "a4ef85ebc86688eeef667271abbc7cd4f1110cf6"
+SRCREV_libnvidia-container = "a4ef85ebc86688eeef667271abbc7cd4f1110cf6"
 # Nvidia modprobe version 495.44
 SRCREV_modprobe = "d6bce304f30b6661c9ab6a993f49340eafca7a7e"
 SRCREV_FORMAT = "libnvidia_modprobe"
