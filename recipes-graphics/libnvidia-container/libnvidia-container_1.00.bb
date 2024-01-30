@@ -2,7 +2,7 @@ require libnvidia-container.inc
 
 SUMMARY = "libNVIDIA Container for Yocto"
 
-do_compile_prepend() {
+do_compile:prepend() {
     export GOPATH="${WORKDIR}/go"
     export GOCACHE="${WORKDIR}/go-cache"
     mkdir -p ${GOPATH} ${GOCACHE}
