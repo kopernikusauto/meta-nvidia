@@ -13,7 +13,7 @@ NVIDIA_MODPROBE_EXTRA_CFLAGS ?= "-ffile-prefix-map=${WORKDIR}=/usr/src/debug/${P
 CFLAGS:prepend = " -I/usr/include/tirpc "
 CFLAGS:prepend = " -Wno-error "
 CFLAGS:append=" -Wno-cast-function-type "
-CFLAGS:append=" -Wno-pedantic "
+CFLAGS:append=" -Wno-pedantic -Wno-unknown-warning-option -Wno-gnu-alignof-expression "
 CFLAGS:remove = "-Werror"
 LDFLAGS:prepend = " -ltirpc "
 
@@ -28,7 +28,7 @@ do_compile:prepend() {
 
     # export CFLAGS="$CFLAGS -I${STAGING_INCDIR}/tirpc"
     # export LDFLAGS="$LDFLAGS -ltirpc"
-    export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-pedantic "
+    export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-unknown-warning-option -Wno-gnu-alignof-expression "
     export LDFLAGS="$LDFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -ltirpc "
 
     # get lsb_release
