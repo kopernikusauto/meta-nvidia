@@ -17,6 +17,7 @@ CFLAGS:append=" -Wno-pedantic "
 CFLAGS:append=" -Wno-discarded-qualifiers "
 CFLAGS:remove = "-Werror"
 LDFLAGS:prepend = " -ltirpc "
+CPPFLAGS:append = " -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
 
 export OBJCPY="${OBJCOPY}"
 
