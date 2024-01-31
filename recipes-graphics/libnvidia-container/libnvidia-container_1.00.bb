@@ -13,11 +13,11 @@ NVIDIA_MODPROBE_EXTRA_CFLAGS ?= "-ffile-prefix-map=${WORKDIR}=/usr/src/debug/${P
 CFLAGS:prepend = " -I/usr/include/tirpc "
 CFLAGS:prepend = " -Wno-error "
 CFLAGS:append=" -Wno-cast-function-type "
-CFLAGS:append=" -Wno-pedantic "
+# CFLAGS:append=" -Wno-pedantic "
 CFLAGS:append=" -Wno-discarded-qualifiers "
 CFLAGS:remove = "-Werror"
-LDFLAGS:prepend = " -ltirpc "
-CPPFLAGS:append = " -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
+LDFLAGS:prepend = " -ltirpc -Wno-error "
+CPPFLAGS:append = " -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
 
 export OBJCPY="${OBJCOPY}"
 
@@ -30,9 +30,9 @@ do_compile:prepend() {
 
     # export CFLAGS="$CFLAGS -I${STAGING_INCDIR}/tirpc"
     # export LDFLAGS="$LDFLAGS -ltirpc"
-    export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
-    export LDFLAGS="$LDFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -ltirpc -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
-    export CPPFLAGS="$CPPFLAGS -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
+    export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
+    export LDFLAGS="$LDFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -ltirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
+    export CPPFLAGS="$CPPFLAGS -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
 
     # get lsb_release
     install -m 0755 /usr/bin/lsb_release ${WORKDIR}/lsb_release
