@@ -31,7 +31,7 @@ do_compile:prepend() {
     # export LDFLAGS="$LDFLAGS -ltirpc"
     export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
     export LDFLAGS="$LDFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -ltirpc -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
-    export CPPFLAGS="$CPPFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
+    export CPPFLAGS="$CPPFLAGS -Wno-error -Wno-cast-function-type -Wno-pedantic -Wno-discarded-qualifiers "
 
     # get lsb_release
     install -m 0755 /usr/bin/lsb_release ${WORKDIR}/lsb_release
