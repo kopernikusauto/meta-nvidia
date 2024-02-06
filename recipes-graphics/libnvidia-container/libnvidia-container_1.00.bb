@@ -18,13 +18,13 @@ CFLAGS:remove = "-Werror"
 LDFLAGS:prepend = " -ltirpc -Wno-error "
 CPPFLAGS:append = " -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
 
-TARGET_CFLAGS:append= " -Wno-error"
-TARGET_CPPFLAGS:append= " -Wno-error"
-TARGET_LDFLAGS:append= " -Wno-error"
+TARGET_CFLAGS:append= " -Wno-error -Wno-redefined"
+TARGET_CPPFLAGS:append= " -Wno-error -Wno-redefined"
+TARGET_LDFLAGS:append= " -Wno-error -Wno-redefined"
 
-CFLAGS:append= " -Wno-error "
-CPPFLAGS:append= " -Wno-error "
-LDFLAGS:append= " -Wno-error "
+CFLAGS:append= " -Wno-error -Wno-redefined "
+CPPFLAGS:append= " -Wno-error -Wno-redefined "
+LDFLAGS:append= " -Wno-error -Wno-redefined "
 
 export OBJCPY="${OBJCOPY}"
 
@@ -37,9 +37,9 @@ do_compile:prepend() {
 
     # export CFLAGS="$CFLAGS -I${STAGING_INCDIR}/tirpc"
     # export LDFLAGS="$LDFLAGS -ltirpc"
-    export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
-    export LDFLAGS="$LDFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -ltirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
-    export CPPFLAGS="$CPPFLAGS -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
+    export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers -Wno-redefined "
+    export LDFLAGS="$LDFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -ltirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers -Wno-redefined "
+    export CPPFLAGS="$CPPFLAGS -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers -Wno-redefined "
 
     # get lsb_release
     install -m 0755 /usr/bin/lsb_release ${WORKDIR}/lsb_release
