@@ -33,7 +33,6 @@ DEPENDS = " \
             libcap \
             elfutils \
             libtirpc134 \
-            libtirpc-native \
             ldconfig-native \        
             "
 

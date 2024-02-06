@@ -13,7 +13,6 @@ NVIDIA_MODPROBE_EXTRA_CFLAGS ?= "-ffile-prefix-map=${WORKDIR}=/usr/src/debug/${P
 CFLAGS:prepend = " -I/usr/include/tirpc "
 CFLAGS:prepend = " -Wno-error "
 CFLAGS:append=" -Wno-cast-function-type "
-# CFLAGS:append=" -Wno-pedantic "
 CFLAGS:append=" -Wno-discarded-qualifiers "
 CFLAGS:remove = "-Werror"
 LDFLAGS:prepend = " -ltirpc -Wno-error "
