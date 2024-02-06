@@ -16,8 +16,8 @@ LIBTIRPC_VERSION = "1.3.4"
 
 SRC_URI = "git://github.com/NVIDIA/libnvidia-container.git;protocol=https;name=libnvidia;branch=main \
            git://github.com/NVIDIA/nvidia-modprobe.git;protocol=https;branch=main;name=modprobe;destsuffix=git/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION} \
-           file://0001-build-fix.patch \
-           file://0003-fix-remove-buildpath-for-package-qa.patch \
+           file://libnvidia-container/0001-build-fix.patch \
+           file://libnvidia-container/0003-fix-remove-buildpath-for-package-qa.patch \
            "
 
 # SRCREV = "a4ef85ebc86688eeef667271abbc7cd4f1110cf6"
