@@ -18,6 +18,14 @@ CFLAGS:remove = "-Werror"
 LDFLAGS:prepend = " -ltirpc -Wno-error "
 CPPFLAGS:append = " -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
 
+TARGET_CFLAGS:append= "-Wno-error"
+TARGET_CPPFLAGS:append= "-Wno-error"
+TARGET_LDFLAGS:append= "-Wno-error"
+
+CFLAGS:append= "-Wno-error"
+CPPFLAGS:append= "-Wno-error"
+LDFLAGS:append= "-Wno-error"
+
 export OBJCPY="${OBJCOPY}"
 
 do_configure:append() {
