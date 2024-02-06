@@ -10,7 +10,7 @@ PACKAGECONFIG[seccomp] = "WITH_SECCOMP=yes,WITH_SECCOMP=no,libseccomp"
 EXTRA_OEMAKE = "EXCLUDE_BUILD_FLAGS=1 PLATFORM=${HOST_ARCH} WITH_NVCGO=no WITH_LIBELF=yes COMPILER=${@d.getVar('CC').split()[0]} REVISION=${SRCREV_libnvidia} ${PACKAGECONFIG_CONFARGS} \
                 NVIDIA_MODPROBE_EXTRA_CFLAGS=${NVIDIA_MODPROBE_EXTRA_CFLAGS}"
 NVIDIA_MODPROBE_EXTRA_CFLAGS ?= "-ffile-prefix-map=${WORKDIR}=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR}"
-# CFLAGS:prepend = " -I/usr/include/tirpc "
+CFLAGS:prepend = " -I/usr/include/tirpc "
 CFLAGS:prepend = " -Wno-error "
 CFLAGS:append=" -Wno-cast-function-type "
 CFLAGS:append=" -Wno-discarded-qualifiers "
