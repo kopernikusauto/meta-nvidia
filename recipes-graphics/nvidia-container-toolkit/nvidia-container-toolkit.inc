@@ -11,4 +11,5 @@ DEPENDS = " \
             curl-native ca-certificates-native go-native \
             coreutils-native \
             "
-S = "${WORKDIR}/git"
+
+S = "${WORKDIR}/git/src/github.com/NVIDIA/nvidia-container-toolkit/"
