@@ -28,6 +28,6 @@ do_install() {
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-ctk ${D}${bindir}
 }
 
-INSANE_SKIP:${PN}:append= "already-stripped"
+INSANE_SKIP:${PN} += "already-stripped"
 
 FILES_${PN} += "/usr/local/*"
