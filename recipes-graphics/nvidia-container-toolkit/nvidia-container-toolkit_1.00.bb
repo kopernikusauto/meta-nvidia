@@ -2,6 +2,7 @@ require nvidia-container-toolkit.inc
 
 SUMMARY = "NVIDIA Container Toolkit for Yocto"
 
+GO_INSTALL = "${GO_IMPORT}/cmd/..."
 # The go-nvml symbol lookup functions *require* lazy dynamic symbol resolution
 SECURITY_LDFLAGS = ""
 LDFLAGS += "-Wl,-z,lazy"
