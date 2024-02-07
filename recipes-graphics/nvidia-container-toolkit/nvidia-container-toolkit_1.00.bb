@@ -2,6 +2,11 @@ require nvidia-container-toolkit.inc
 
 SUMMARY = "NVIDIA Container Toolkit for Yocto"
 
+# The go-nvml symbol lookup functions *require* lazy dynamic symbol resolution
+SECURITY_LDFLAGS = ""
+LDFLAGS += "-Wl,-z,lazy"
+GO_LINKSHARED = ""
+
 inherit go
 
 do_compile() {
@@ -23,5 +28,6 @@ do_install() {
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-ctk ${D}${bindir}
 }
 
+INSANE_SKIP:${PN}:append= "already-stripped"
 
 FILES_${PN} += "/usr/local/*"
