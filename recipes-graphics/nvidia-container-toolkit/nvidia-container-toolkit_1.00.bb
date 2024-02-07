@@ -20,7 +20,6 @@ do_compile() {
 }
 
 do_install() {
-    go_do_install
     # Create the target directories in the image file system
     install -d ${D}${bindir}
     
