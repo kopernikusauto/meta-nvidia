@@ -7,7 +7,9 @@ SECURITY_LDFLAGS = ""
 LDFLAGS += "-Wl,-z,lazy"
 GO_LINKSHARED = ""
 
-inherit go
+REQUIRED_DISTRO_FEATURES = "virtualization"
+
+inherit go go-mod features_check
 
 do_compile() {
     echo "Current directory: $(pwd)"
@@ -29,5 +31,5 @@ do_install() {
 }
 
 INSANE_SKIP:${PN} += "already-stripped"
-INSANE_SKIP:${PN}:append = "ldflags already-stripped"
+INSANE_SKIP:${PN}:append = "already-stripped"
 FILES_${PN} += "/usr/local/*"
