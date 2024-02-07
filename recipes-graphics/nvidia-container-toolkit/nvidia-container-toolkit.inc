@@ -13,4 +13,4 @@ DEPENDS = " \
             coreutils-native \
             "
 
-S = "${WORKDIR}/git/src/github.com/NVIDIA/nvidia-container-toolkit"
+S = "${WORKDIR}/git"

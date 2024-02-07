@@ -5,7 +5,10 @@ SUMMARY = "NVIDIA Container Toolkit for Yocto"
 inherit go
 
 do_compile() {
-    oe_runmake cmds
+    echo "Current directory: $(pwd)"
+    ls -alh
+    oe_runmake -C ${S} cmds
+    
 }
 
 do_install() {
