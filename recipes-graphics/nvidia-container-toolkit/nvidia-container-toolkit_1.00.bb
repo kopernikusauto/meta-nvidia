@@ -29,5 +29,5 @@ do_install() {
 }
 
 INSANE_SKIP:${PN} += "already-stripped"
-
+INSANE_SKIP:${PN}:append = "ldflags already-stripped"
 FILES_${PN} += "/usr/local/*"
