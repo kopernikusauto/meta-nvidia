@@ -7,7 +7,7 @@ inherit go
 do_compile() {
     echo "Current directory: $(pwd)"
     ls -alh
-    oe_runmake -C ${S} cmds
+    oe_runmake -C ${S}/src/${GO_IMPORT} cmds
     
 }
 
@@ -16,11 +16,11 @@ do_install() {
     install -d ${D}${bindir}
     
     # Copy each binary to the target directory
-    install -m 0755 ${S}/nvidia-container-runtime ${D}${bindir}
-    install -m 0755 ${S}/nvidia-container-runtime.cdi ${D}${bindir}
-    install -m 0755 ${S}/nvidia-container-runtime-hook ${D}${bindir}
-    install -m 0755 ${S}/nvidia-container-runtime.legacy ${D}${bindir}
-    install -m 0755 ${S}/nvidia-ctk ${D}${bindir}
+    install -m 0755 ${S}src/${GO_IMPORT}/nvidia-container-runtime ${D}${bindir}
+    install -m 0755 ${S}src/${GO_IMPORT}/nvidia-container-runtime.cdi ${D}${bindir}
+    install -m 0755 ${S}src/${GO_IMPORT}/nvidia-container-runtime-hook ${D}${bindir}
+    install -m 0755 ${S}src/${GO_IMPORT}/nvidia-container-runtime.legacy ${D}${bindir}
+    install -m 0755 ${S}src/${GO_IMPORT}/nvidia-ctk ${D}${bindir}
 }
 
 
