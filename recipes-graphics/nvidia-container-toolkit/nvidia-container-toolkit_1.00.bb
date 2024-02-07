@@ -2,7 +2,6 @@ require nvidia-container-toolkit.inc
 
 SUMMARY = "NVIDIA Container Toolkit for Yocto"
 
-DEPENDS = "go-native"
 GO_IMPORT = "github.com/NVIDIA/nvidia-container-toolkit"
 
 inherit go
