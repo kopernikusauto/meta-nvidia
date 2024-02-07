@@ -2,8 +2,6 @@ require nvidia-container-toolkit.inc
 
 SUMMARY = "NVIDIA Container Toolkit for Yocto"
 
-GO_IMPORT = "github.com/NVIDIA/nvidia-container-toolkit"
-
 inherit go
 
 do_compile() {
