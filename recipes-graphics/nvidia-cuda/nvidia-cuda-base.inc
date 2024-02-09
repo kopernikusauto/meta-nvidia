@@ -7,7 +7,7 @@ NVIDIA_CUDA_SRC = "${WORKDIR}/${NVIDIA_CUDA_ARCHIVE_NAME}"
 
 # LIC_FILES_CHKSUM = "file://../LICENSE;md5=2cc00be68c1227a7c42ff3620ef75d05"
 # LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
-# LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
+LIC_FILES_CHKSUM = "file://../EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
 
 # wget https://developer.download.nvidia.com/compute/cuda/12.0.1/local_installers/cuda_12.0.1_525.85.12_linux.run
 # sudo sh cuda_12.0.1_525.85.12_linux.run
