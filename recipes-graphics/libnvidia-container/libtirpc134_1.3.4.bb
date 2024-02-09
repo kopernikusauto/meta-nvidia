@@ -19,6 +19,9 @@ inherit autotools pkgconfig
 DISABLE_STATIC = ""
 EXTRA_OECONF = "--disable-gssapi --enable-static"
 
+# Append -fPIC to CFLAGS
+CFLAGS:append = "-fPIC"
+
 do_install:append() {
     rm -r ${D}${sysconfdir} ${D}${datadir} ${D}${libdir}/pkgconfig
     rm ${D}${libdir}/*.so*
