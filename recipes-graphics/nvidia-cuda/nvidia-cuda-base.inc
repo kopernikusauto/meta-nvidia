@@ -1,8 +1,8 @@
 DESCRIPTION = "NVIDIA CUDA Toolkit"
 LICENSE = "Proprietary"
 # LIC_FILES_CHKSUM = "file://../LICENSE;md5=2cc00be68c1227a7c42ff3620ef75d05"
-LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
-
+; LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
+LIC_FILES_CHKSUM = "file://${WORKDIR}/${NVIDIA_CUDA_ARCHIVE_NAME}/EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
 
 # wget https://developer.download.nvidia.com/compute/cuda/12.0.1/local_installers/cuda_12.0.1_525.85.12_linux.run
 # sudo sh cuda_12.0.1_525.85.12_linux.run
@@ -58,3 +58,5 @@ RDEPENDS:${PN} = "ncurses"
 
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"= "1"
+
+addtask do_unpack before do_patch after do_fetch
