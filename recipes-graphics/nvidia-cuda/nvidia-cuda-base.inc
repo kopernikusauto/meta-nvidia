@@ -1,6 +1,8 @@
 DESCRIPTION = "NVIDIA CUDA Toolkit"
 LICENSE = "Proprietary"
 # LIC_FILES_CHKSUM = "file://../LICENSE;md5=2cc00be68c1227a7c42ff3620ef75d05"
+LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
+
 
 # wget https://developer.download.nvidia.com/compute/cuda/12.0.1/local_installers/cuda_12.0.1_525.85.12_linux.run
 # sudo sh cuda_12.0.1_525.85.12_linux.run
@@ -11,6 +13,9 @@ PR = "r0"
 SRC_URI = "https://developer.download.nvidia.com/compute/cuda/${PV}/local_installers/cuda_${PV}_525.85.12_linux.run"
 SRC_URI[md5sum] = "2a5b80f322151e25ed792029e4571318"
 SRC_URI[sha256sum] = "1b205a06272f1463f477276fdab903f3f666917c068e520738001e69c7a1875b"
+
+NVIDIA_CUDA_ARCHIVE_NAME = "cuda_${PV}_525.85.12_linux"
+NVIDIA_CUDA_SRC = "${WORKDIR}/${NVIDIA_CUDA_ARCHIVE_NAME}"
 
 S = "${WORKDIR}"
 
@@ -24,7 +29,7 @@ do_compile[noexec] = "1"
 # Custom unpack function for the runfile
 do_unpack() {
     chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
-    ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --extract=${WORKDIR}
+    ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --extract=${NVIDIA_CUDA_SRC}
 }
 
 do_install() {
@@ -39,16 +44,16 @@ do_install() {
     echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/cuda-${PV}/lib64" >> ${D}/etc/profile.d/cuda.sh
 }
 
-FILES_${PN} += "/usr/local/cuda-${PV}"
-FILES_${PN}-doc += "/usr/share/doc/cuda-${PV}"
+FILES:${PN}:append = "/usr/local/cuda-${PV}"
+FILES:${PN}-doc:append = "/usr/share/doc/cuda-${PV}"
 
-INSANE_SKIP_${PN} += "ldflags"
-INSANE_SKIP_${PN}-dev += "ldflags"
+INSANE_SKIP:${PN}:append= "ldflags"
+INSANE_SKIP:${PN}-dev:append= "ldflags"
 
 # Adjust the package name as necessary
 PACKAGES = "${PN} ${PN}-doc"
 
-RDEPENDS_${PN} = "ncurses"
+RDEPENDS:${PN} = "ncurses"
 
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"= "1"
