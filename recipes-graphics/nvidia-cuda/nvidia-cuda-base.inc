@@ -7,8 +7,8 @@ NVIDIA_CUDA_SRC = "${WORKDIR}/${NVIDIA_CUDA_ARCHIVE_NAME}"
 
 # LIC_FILES_CHKSUM = "file://../LICENSE;md5=2cc00be68c1227a7c42ff3620ef75d05"
 # LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
-LIC_FILES_CHKSUM = "file://CUDA_Toolkit_EULA_081215.pdf;md5=7e20840f8f5f6b525b0959f1d477cddd"
-
+# LIC_FILES_CHKSUM = "file://CUDA_Toolkit_EULA_081215.pdf;md5=7e20840f8f5f6b525b0959f1d477cddd"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 # wget https://developer.download.nvidia.com/compute/cuda/12.0.1/local_installers/cuda_12.0.1_525.85.12_linux.run
 # sudo sh cuda_12.0.1_525.85.12_linux.run
 # Replace the version and checksum with the correct ones for your package
