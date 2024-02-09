@@ -8,7 +8,6 @@ LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
 # sudo sh cuda_12.0.1_525.85.12_linux.run
 # Replace the version and checksum with the correct ones for your package
 PV = "12.0.1"
-PR = "r0"
 
 SRC_URI = "https://developer.download.nvidia.com/compute/cuda/${PV}/local_installers/cuda_${PV}_525.85.12_linux.run"
 SRC_URI[md5sum] = "2a5b80f322151e25ed792029e4571318"
