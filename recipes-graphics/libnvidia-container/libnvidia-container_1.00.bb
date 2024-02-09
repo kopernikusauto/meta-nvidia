@@ -10,22 +10,7 @@ PACKAGECONFIG[seccomp] = "WITH_SECCOMP=yes,WITH_SECCOMP=no,libseccomp"
 EXTRA_OEMAKE = "EXCLUDE_BUILD_FLAGS=1 PLATFORM=${HOST_ARCH} WITH_NVCGO=no WITH_LIBELF=yes COMPILER=${@d.getVar('CC').split()[0]} REVISION=${SRCREV_libnvidia} ${PACKAGECONFIG_CONFARGS} \
                 NVIDIA_MODPROBE_EXTRA_CFLAGS=${NVIDIA_MODPROBE_EXTRA_CFLAGS}"
 NVIDIA_MODPROBE_EXTRA_CFLAGS ?= "-ffile-prefix-map=${WORKDIR}=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR}"
-# CFLAGS:prepend = " -I/usr/include/tirpc "
 CFLAGS:prepend = " -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc "
-# CFLAGS:prepend = " -Wno-error "
-# CFLAGS:append=" -Wno-cast-function-type "
-# CFLAGS:append=" -Wno-discarded-qualifiers "
-# CFLAGS:remove = "-Werror"
-# LDFLAGS:prepend = " -ltirpc -Wno-error "
-# CPPFLAGS:append = " -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers "
-
-# TARGET_CFLAGS:append= " -Wno-error -Wno-all"
-# TARGET_CPPFLAGS:append= " -Wno-error -Wno-all"
-# TARGET_LDFLAGS:append= " -Wno-error -Wno-all"
-
-# CFLAGS:append= " -Wno-error -Wno-all "
-# CPPFLAGS:append= " -Wno-error -Wno-all "
-# LDFLAGS:append= " -Wno-error -Wno-all "
 
 export OBJCPY="${OBJCOPY}"
 
@@ -35,13 +20,6 @@ do_configure:append() {
 }
 
 do_compile:prepend() {
-
-    # export CFLAGS="$CFLAGS -I${STAGING_INCDIR}/tirpc"
-    # export LDFLAGS="$LDFLAGS -ltirpc"
-    # export CFLAGS="$CFLAGS -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers -Wno-all "
-    # export LDFLAGS="$LDFLAGS -L${RECIPE_SYSROOT_NATIVE}/usr/lib -ltirpc -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers -Wno-all "
-    # export CPPFLAGS="$CPPFLAGS -Wno-error -Wno-cast-function-type -Wno-discarded-qualifiers -Wno-all "
-
     # get lsb_release
     install -m 0755 /usr/bin/lsb_release ${WORKDIR}/lsb_release
 
