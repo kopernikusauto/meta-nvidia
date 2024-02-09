@@ -1,17 +1,18 @@
 DESCRIPTION = "NVIDIA CUDA Toolkit"
 LICENSE = "Proprietary"
 
+PV = "12.0.1"
 NVIDIA_CUDA_ARCHIVE_NAME = "cuda_${PV}_525.85.12_linux"
 NVIDIA_CUDA_SRC = "${WORKDIR}/${NVIDIA_CUDA_ARCHIVE_NAME}"
 
 # LIC_FILES_CHKSUM = "file://../LICENSE;md5=2cc00be68c1227a7c42ff3620ef75d05"
-; LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
+# LIC_FILES_CHKSUM = "file://EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/${NVIDIA_CUDA_ARCHIVE_NAME}/EULA.txt;md5=d43b70e08c9cd63c838dc661b6f1a763"
 
 # wget https://developer.download.nvidia.com/compute/cuda/12.0.1/local_installers/cuda_12.0.1_525.85.12_linux.run
 # sudo sh cuda_12.0.1_525.85.12_linux.run
 # Replace the version and checksum with the correct ones for your package
-PV = "12.0.1"
+
 
 SRC_URI = "https://developer.download.nvidia.com/compute/cuda/${PV}/local_installers/cuda_${PV}_525.85.12_linux.run"
 SRC_URI[md5sum] = "2a5b80f322151e25ed792029e4571318"
