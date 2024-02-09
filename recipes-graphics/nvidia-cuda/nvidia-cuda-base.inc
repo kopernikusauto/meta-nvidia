@@ -29,15 +29,17 @@ do_compile[noexec] = "1"
 # Custom unpack function for the runfile
 do_unpack() {
     chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
+    ls ${NVIDIA_CUDA_SRC}
     ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --extract=${NVIDIA_CUDA_SRC}
+    ls ${NVIDIA_CUDA_SRC}
 }
 
 do_install() {
     # Assuming the installer extracts to a predictable directory structure
     # Adjust these paths according to what you find after extraction
-
+    ${NVIDIA_CUDA_SRC}
     # Toolkit installation
-    ${WORKDIR}/cuda-linux.${PV}-x86_64.run --silent --toolkit --toolkitpath=${D}/usr/local/cuda-${PV}
+    ${NVIDIA_CUDA_SRC}/cuda-linux.${PV}-x86_64.run --silent --toolkit --toolkitpath=${D}/usr/local/cuda-${PV}
 
     # Making the necessary symlinks and setting up environment variables
     echo "export PATH=\$PATH:/usr/local/cuda-${PV}/bin" > ${D}/etc/profile.d/cuda.sh
