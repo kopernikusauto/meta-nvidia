@@ -33,6 +33,10 @@ do_custom_fetch() {
     chmod +x ${DL_DIR}/cuda_12.0.1_525.85.12_linux.run
     echo "Listing DL_DIR contents:"
     ls -la ${DL_DIR}
+    cp ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ${WORKDIR}/
+    echo "Listing WORKDIR contents:"
+    ls -la ${WORKDIR}
+
 }
 
 do_unpack() {
