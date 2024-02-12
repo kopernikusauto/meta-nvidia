@@ -54,6 +54,7 @@ do_install() {
         install -d ${D}${prefix}/cuda
         
         install -d ${D}${prefix}/cuda/bin
+        mkdir ${D}${prefix}/cuda/lib64
         install -d ${D}${prefix}/cuda/lib64
         install -d ${D}${prefix}/cuda/include
         install -d ${D}${prefix}/cuda/share
