@@ -54,7 +54,7 @@ do_install() {
         install -d ${D}${prefix}/cuda
         mkdir ${D}${prefix}/cuda/tmp
         # Extract the installer
-        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --installpath=${D}${prefix}/cuda --tmpdir=${D}${prefix}/cuda/tmp
+        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --installpath=${D}${prefix}/cuda --tmpdir=${D}${prefix}/cuda/tmp --defaultroot=${D}${prefix}/cuda
     else
         bbfatal "CUDA installer file not found."
     fi
