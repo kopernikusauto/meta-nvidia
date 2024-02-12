@@ -27,13 +27,25 @@ do_compile() {
     :
 }
 
+do_unpack() {
+    # Your existing unpack commands here
+
+    # Debug: List the contents of WORKDIR
+    ls -lah ${WORKDIR}
+}
+
 do_install() {
     
-    chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
-    # Create a temporary directory for extraction
-    install -d ${D}${prefix}/cuda
-    # Extract the CUDA run file
-    sh ${WORKDIR}/cuda_${PV}_525.85.12_linux.run --extract=${D}${prefix}/cuda
+    ls -lah ${WORKDIR}
+    if [ -f ${WORKDIR}/cuda_${PV}_525.85.12_linux.run ]; then
+        chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
+        # Create a directory for extraction
+        install -d ${D}${prefix}/cuda
+        # Extract the installer
+        ${WORKDIR}/cuda_${PV}_525.85.12_linux.run --extract=${D}${prefix}/cuda
+    else
+        bbfatal "CUDA installer file not found."
+    fi
 
     # Install binaries, libraries, etc.
     install -d ${D}${bindir}
