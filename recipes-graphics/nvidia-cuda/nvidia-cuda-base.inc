@@ -5,8 +5,8 @@ LICENSE = "CLOSED"
 PV = "12.0.1"
 PR = "r0"
 
-# SRC_URI = "https://developer.download.nvidia.com/compute/cuda/${PV}/local_installers/cuda_${PV}_525.85.12_linux.run"
-SRC_URI = "file://cuda_12.0.1_525.85.12_linux.run"
+SRC_URI = "https://developer.download.nvidia.com/compute/cuda/${PV}/local_installers/cuda_${PV}_525.85.12_linux.run"
+# SRC_URI = "file://cuda_12.0.1_525.85.12_linux.run"
 
 SRC_URI[md5sum] = "2a5b80f322151e25ed792029e4571318"
 SRC_URI[sha256sum] = "1b205a06272f1463f477276fdab903f3f666917c068e520738001e69c7a1875b"
@@ -29,7 +29,7 @@ do_compile() {
     :
 }
 do_custom_fetch() {
-    wget -P ${DL_DIR} https://developer.download.nvidia.com/compute/cuda/12.0.1/local_installers/cuda_12.0.1_525.85.12_linux.run || die "Failed to download CUDA installer"
+    wget -P ${DL_DIR} ${SRC_URI}
     chmod +x ${DL_DIR}/cuda_12.0.1_525.85.12_linux.run
     echo "Listing DL_DIR contents:"
     ls -la ${DL_DIR}
@@ -41,12 +41,14 @@ do_unpack() {
     # Debug: List the contents of WORKDIR
     ls -lah ${WORKDIR}
 }
-# do_copy_installer_preinstall() {
-#     echo "Listing DL_DIR contents:"
-#     ls -la ${DL_DIR}
-#     cp ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ${WORKDIR}/
-#     chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
-# }
+do_copy_installer_preinstall() {
+    echo "Listing DL_DIR contents:"
+    ls -la ${DL_DIR}
+    cp ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ${WORKDIR}/
+    chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
+    echo "Listing WORKDIR contents:"
+    ls -la ${WORKDIR}
+}
 do_install() {
     
     echo "Listing WORKDIR contents:"
@@ -76,9 +78,8 @@ do_install() {
     # Clean up the extraction directory if you wish
     rm -rf ${D}${prefix}/cuda
 }
-
-# addtask do_copy_installer_preinstall before do_install
 addtask do_custom_fetch before do_fetch
+# addtask do_copy_installer_preinstall before do_install
 
 FILES:${PN}:append= "${bindir}/* ${libdir}/* ${includedir}/*"
 
