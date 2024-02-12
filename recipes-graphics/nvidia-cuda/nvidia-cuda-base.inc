@@ -17,7 +17,7 @@ DEPENDS = "ncurses"
 # Allow the recipe to fetch the CUDA Toolkit installer
 LICENSE_FLAGS_ACCEPTED = "commercial"
 
-inherit cuda
+# inherit cuda
 
 do_fetch[noexec] = "1"
 do_unpack[noexec] = "1"
