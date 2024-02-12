@@ -73,7 +73,7 @@ do_install() {
     # Example of installing specific components, adjust paths as necessary
     cp -r ${D}${prefix}/cuda/bin/* ${D}${bindir}/
     
-    cp -r ${D}${prefix}/cuda/lib64/* ${D}${libdir}/
+    # cp -r ${D}${prefix}/cuda/lib64/* ${D}${libdir}/
     cp -r ${D}${prefix}/cuda/include/* ${D}${includedir}/
     # Copy the shared resources
     cp -r ${D}${prefix}/cuda/share/* ${D}${datadir}/
