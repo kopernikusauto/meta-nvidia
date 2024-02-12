@@ -45,14 +45,7 @@ do_unpack() {
     # Debug: List the contents of WORKDIR
     ls -lah ${WORKDIR}
 }
-do_copy_installer_preinstall() {
-    echo "Listing DL_DIR contents:"
-    ls -la ${DL_DIR}
-    cp ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ${WORKDIR}/
-    chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
-    echo "Listing WORKDIR contents:"
-    ls -la ${WORKDIR}
-}
+
 do_install() {
     
     echo "Listing WORKDIR contents:"
@@ -65,7 +58,7 @@ do_install() {
         # Create a directory for extraction
         install -d ${D}${prefix}/cuda
         # Extract the installer
-        ${WORKDIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --driver --extract=${D}${prefix}/cuda
+        ${WORKDIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --driver --installpath=${D}${prefix}/cuda
     else
         bbfatal "CUDA installer file not found."
     fi
@@ -76,6 +69,7 @@ do_install() {
 
     # Example of installing specific components, adjust paths as necessary
     cp -r ${D}${prefix}/cuda/bin/* ${D}${bindir}/
+    mkdir ${D}${prefix}/cuda/lib64
     cp -r ${D}${prefix}/cuda/lib64/* ${D}${libdir}/
     cp -r ${D}${prefix}/cuda/include/* ${D}${includedir}/
 
