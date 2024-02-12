@@ -52,9 +52,15 @@ do_install() {
         chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
         # Create a directory for extraction
         install -d ${D}${prefix}/cuda
+        
+        install -d ${D}${prefix}/cuda/bin
+        install -d ${D}${prefix}/cuda/lib64
+        install -d ${D}${prefix}/cuda/include
+        install -d ${D}${prefix}/cuda/share
+        install -d ${D}${prefix}/cuda/doc
         mkdir ${D}${prefix}/cuda/tmp
         # Extract the installer
-        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --installpath=${D}${prefix}/cuda --tmpdir=${D}${prefix}/cuda/tmp --defaultroot=${D}${prefix}/cuda
+        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --extract=${D}${prefix}/cuda
     else
         bbfatal "CUDA installer file not found."
     fi
@@ -65,9 +71,27 @@ do_install() {
 
     # Example of installing specific components, adjust paths as necessary
     cp -r ${D}${prefix}/cuda/bin/* ${D}${bindir}/
-    mkdir ${D}${prefix}/cuda/lib64
+    
     cp -r ${D}${prefix}/cuda/lib64/* ${D}${libdir}/
     cp -r ${D}${prefix}/cuda/include/* ${D}${includedir}/
+    # Copy the shared resources
+    cp -r ${D}${prefix}/cuda/share/* ${D}${datadir}/
+
+    # Handle documentation and additional components
+    cp -r ${D}${prefix}/cuda/DOCS/* ${D}${docdir}/cuda/
+    cp -r ${D}${prefix}/cuda/nsight* ${D}${prefix}/cuda/
+    cp -r ${D}${prefix}/cuda/nvml ${D}${prefix}/cuda/
+    cp -r ${D}${prefix}/cuda/nvvm ${D}${prefix}/cuda/
+    cp -r ${D}${prefix}/cuda/extras ${D}${prefix}/cuda/
+    cp -r ${D}${prefix}/cuda/gds* ${D}${prefix}/cuda/
+    cp -r ${D}${prefix}/cuda/compute-sanitizer ${D}${prefix}/cuda/
+    cp -r ${D}${prefix}/cuda/tools ${D}${prefix}/cuda/
+    cp -r ${D}${prefix}/cuda/src ${D}${prefix}/cuda/
+
+    # Ensure the EULA, README, and version.json are copied
+    cp ${D}${prefix}/cuda/EULA.txt ${D}${docdir}/cuda/
+    cp ${D}${prefix}/cuda/README ${D}${docdir}/cuda/
+    cp ${D}${prefix}/cuda/version.json ${D}${docdir}/cuda/
 
     # Clean up the extraction directory if you wish
     rm -rf ${D}${prefix}/cuda
