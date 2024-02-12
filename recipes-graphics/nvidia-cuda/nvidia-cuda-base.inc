@@ -15,7 +15,7 @@ S = "${WORKDIR}"
 
 DEPENDS = "ncurses"
 # Allow the recipe to fetch the CUDA Toolkit installer
-LICENSE_FLAGS_WHITELIST = "commercial"
+LICENSE_FLAGS_ACCEPTED = "commercial"
 
 inherit cuda
 
@@ -50,5 +50,5 @@ FILES:${PN}:append= "${bindir}/* ${libdir}/* ${includedir}/*"
 
 COMPATIBLE_HOST = "(x86_64).*-linux"
 
-PROVIDES = "cuda"
+# PROVIDES = "cuda"
 
