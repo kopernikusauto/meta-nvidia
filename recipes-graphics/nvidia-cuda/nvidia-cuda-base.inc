@@ -65,7 +65,7 @@ do_install() {
         # Create a directory for extraction
         install -d ${D}${prefix}/cuda
         # Extract the installer
-        ${WORKDIR}/cuda_${PV}_525.85.12_linux.run --extract=${D}${prefix}/cuda
+        ${WORKDIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --driver --extract=${D}${prefix}/cuda
     else
         bbfatal "CUDA installer file not found."
     fi
