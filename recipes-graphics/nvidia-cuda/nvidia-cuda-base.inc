@@ -66,36 +66,40 @@ do_install() {
         bbfatal "CUDA installer file not found."
     fi
 
-    # Install binaries, libraries, etc.
-    install -d ${D}${bindir}
-    install -d ${D}${libdir}
+    # # Install binaries, libraries, etc.
+   # Dynamically copy directories if they exist to handle optional components
+    for dir in bin lib64 include share; do
+        if [ -d "${D}${prefix}/cuda/${dir}" ]; then
+            echo "Copying ${dir}..."
+            cp -r ${D}${prefix}/cuda/${dir}/* ${D}${prefix}/${dir}/
+        else
+            echo "Directory ${dir} does not exist, skipping..."
+        fi
+    done
 
-    # Example of installing specific components, adjust paths as necessary
-    cp -r ${D}${prefix}/cuda/bin/* ${D}${bindir}/
-    
-    # cp -r ${D}${prefix}/cuda/lib64/* ${D}${libdir}/
-    # cp -r ${D}${prefix}/cuda/include/* ${D}${includedir}/
-    # Copy the shared resources
-    cp -r ${D}${prefix}/cuda/share/* ${D}${datadir}/
+    # Documentation and other directories that may not always be present
+    for comp in DOCS nsight* nvml nvvm extras gds* compute-sanitizer tools src; do
+        if [ -d "${D}${prefix}/cuda/${comp}" ]; then
+            echo "Copying ${comp}..."
+            cp -r ${D}${prefix}/cuda/${comp} ${D}${prefix}/cuda/
+        else
+            echo "${comp} component does not exist, skipping..."
+        fi
+    done
 
-    # Handle documentation and additional components
-    cp -r ${D}${prefix}/cuda/DOCS/* ${D}${docdir}/cuda/
-    cp -r ${D}${prefix}/cuda/nsight* ${D}${prefix}/cuda/
-    cp -r ${D}${prefix}/cuda/nvml ${D}${prefix}/cuda/
-    cp -r ${D}${prefix}/cuda/nvvm ${D}${prefix}/cuda/
-    cp -r ${D}${prefix}/cuda/extras ${D}${prefix}/cuda/
-    cp -r ${D}${prefix}/cuda/gds* ${D}${prefix}/cuda/
-    cp -r ${D}${prefix}/cuda/compute-sanitizer ${D}${prefix}/cuda/
-    cp -r ${D}${prefix}/cuda/tools ${D}${prefix}/cuda/
-    cp -r ${D}${prefix}/cuda/src ${D}${prefix}/cuda/
+    # Handle individual files like EULA, README, version.json
+    for file in EULA.txt README version.json; do
+        if [ -f "${D}${prefix}/cuda/${file}" ]; then
+            echo "Copying ${file}..."
+            cp ${D}${prefix}/cuda/${file} ${D}${docdir}/cuda/
+        else
+            echo "${file} does not exist, skipping..."
+        fi
+    done
 
-    # Ensure the EULA, README, and version.json are copied
-    cp ${D}${prefix}/cuda/EULA.txt ${D}${docdir}/cuda/
-    cp ${D}${prefix}/cuda/README ${D}${docdir}/cuda/
-    cp ${D}${prefix}/cuda/version.json ${D}${docdir}/cuda/
-
-    # Clean up the extraction directory if you wish
-    rm -rf ${D}${prefix}/cuda
+    # Optional: Clean up the extraction directory
+    # Be cautious with this if you need to retain anything in ${D}${prefix}/cuda
+    # rm -rf ${D}${prefix}/cuda
 }
 addtask do_custom_fetch before do_fetch
 # addtask do_copy_installer_preinstall before do_install
