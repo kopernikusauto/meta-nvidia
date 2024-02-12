@@ -31,11 +31,6 @@ do_compile() {
 do_custom_fetch() {
     wget -P ${DL_DIR} ${SRC_URI}
     chmod +x ${DL_DIR}/cuda_12.0.1_525.85.12_linux.run
-    echo "Listing DL_DIR contents:"
-    ls -la ${DL_DIR}
-    cp ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ${WORKDIR}/
-    echo "Listing WORKDIR contents:"
-    ls -la ${WORKDIR}
 
 }
 
@@ -53,12 +48,12 @@ do_install() {
     echo "Listing DL_DIR contents:"
     ls -la ${DL_DIR}
 
-    if [ -f ${WORKDIR}/cuda_${PV}_525.85.12_linux.run ]; then
-        chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
+    if [ -f ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ]; then
+        chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
         # Create a directory for extraction
         install -d ${D}${prefix}/cuda
         # Extract the installer
-        ${WORKDIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --installpath=${D}${prefix}/cuda
+        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --installpath=${D}${prefix}/cuda
     else
         bbfatal "CUDA installer file not found."
     fi
