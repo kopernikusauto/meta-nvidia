@@ -33,10 +33,19 @@ do_unpack() {
     # Debug: List the contents of WORKDIR
     ls -lah ${WORKDIR}
 }
-
+do_copy_installer_preinstall() {
+    echo "Listing DL_DIR contents:"
+    ls -la ${DL_DIR}
+    cp ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ${WORKDIR}/
+    chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
+}
 do_install() {
     
-    ls -lah ${WORKDIR}
+    echo "Listing WORKDIR contents:"
+    ls -la ${WORKDIR}
+    echo "Listing DL_DIR contents:"
+    ls -la ${DL_DIR}
+
     if [ -f ${WORKDIR}/cuda_${PV}_525.85.12_linux.run ]; then
         chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
         # Create a directory for extraction
@@ -59,6 +68,8 @@ do_install() {
     # Clean up the extraction directory if you wish
     rm -rf ${D}${prefix}/cuda
 }
+
+addtask do_copy_installer_preinstall before do_install
 
 FILES:${PN}:append= "${bindir}/* ${libdir}/* ${includedir}/*"
 
