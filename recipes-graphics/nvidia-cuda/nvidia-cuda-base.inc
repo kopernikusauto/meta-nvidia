@@ -28,6 +28,8 @@ do_compile() {
 }
 
 do_install() {
+    
+    chmod +x ${WORKDIR}/cuda_${PV}_525.85.12_linux.run
     # Create a temporary directory for extraction
     install -d ${D}${prefix}/cuda
     # Extract the CUDA run file
