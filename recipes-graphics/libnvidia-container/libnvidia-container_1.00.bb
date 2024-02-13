@@ -51,7 +51,7 @@ do_install() {
     install -d ${D}${sysconfdir}/nvidia-container-runtime
     #install -m 0644 ${S}/src/${GO_IMPORT}/config/config.toml.ubuntu ${D}${sysconfdir}/nvidia-container-runtime/config.toml
     sed -i -e's,ldconfig\.real,ldconfig,' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
-    sed -i -e's,mode = "auto",mode = "legacy",' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
+    # sed -i -e's,mode = "auto",mode = "legacy",' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
     ln -sf nvidia-container-runtime-hook ${D}${bindir}/nvidia-container-toolkit
 }
 
