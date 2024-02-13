@@ -39,3 +39,7 @@ do_install() {
 INSANE_SKIP:${PN} += "already-stripped buildpaths"
 INSANE_SKIP:${PN}:append = "already-stripped buildpaths"
 FILES_${PN} += "/usr/local/*"
+
+RDEPENDS:${PN} = "\
+    libnvidia-container \
+    "
