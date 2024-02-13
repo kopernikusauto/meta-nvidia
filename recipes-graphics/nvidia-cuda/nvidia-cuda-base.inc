@@ -47,7 +47,7 @@ do_install() {
 
     echo "Checking CUDA installer file..."
     if [ -f ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ]; then
-        echo "CUDA installer found. Proceeding with extraction..."
+        echo "CUDA installer found. Proceeding with installation..."
 
         # Ensure the CUDA installer is executable
         chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
@@ -55,28 +55,19 @@ do_install() {
         # Create the directory for the CUDA toolkit
         install -d ${cuda_extract_dir}
 
-        # Extract the CUDA toolkit installer contents
-        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --extract=${cuda_extract_dir}
+        # Install the CUDA toolkit
+        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --installpath=${cuda_extract_dir} --toolkit
 
-        # Check if extraction was successful
+        # Check if installation was successful
         if [ "$(ls -A ${cuda_extract_dir})" ]; then
-            echo "Extraction successful. Installing CUDA Toolkit..."
+            echo "Installation successful. Copying CUDA Toolkit components..."
 
-            # Ensure target directories exist
-            install -d ${D}${prefix}/bin
-            install -d ${D}${prefix}/lib64
-            install -d ${D}${prefix}/include
-            install -d ${D}${prefix}/share
-
-            # Copy extracted contents to their respective locations
-            cp -r ${cuda_extract_dir}/bin/* ${D}${prefix}/bin/
-            cp -r ${cuda_extract_dir}/lib64/* ${D}${prefix}/lib64/
-            cp -r ${cuda_extract_dir}/include/* ${D}${prefix}/include/
-            cp -r ${cuda_extract_dir}/share/* ${D}${prefix}/share/
+            # Recursively copy all contents to their respective locations
+            cp -r ${cuda_extract_dir}/* ${D}${prefix}/cuda/
 
             echo "CUDA Toolkit installation completed."
         else
-            bbfatal "Extraction failed. CUDA Toolkit installer did not extract any files."
+            bbfatal "Installation failed. CUDA Toolkit did not install any files."
         fi
     else
         bbfatal "CUDA installer file not found in ${DL_DIR}."
