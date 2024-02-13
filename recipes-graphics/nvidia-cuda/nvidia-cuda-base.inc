@@ -56,7 +56,7 @@ do_install() {
         install -d ${cuda_extract_dir}
 
         # Install the CUDA toolkit
-        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --installpath=${cuda_extract_dir} --tmpdir=${WORKDIR}/tmpdir --toolkit --override
+        sh ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --installpath=${cuda_extract_dir} --tmpdir=${WORKDIR}/tmpdir --toolkit --override
 
         # Check if installation was successful
         if [ "$(ls -A ${cuda_extract_dir})" ]; then
