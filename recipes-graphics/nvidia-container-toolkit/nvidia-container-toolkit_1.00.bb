@@ -30,10 +30,7 @@ do_install() {
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-container-runtime.legacy ${D}${bindir}
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-ctk ${D}${bindir}
 
-    install -m 0644 ${S}/src/${GO_IMPORT}/config/config.toml.ubuntu ${D}${sysconfdir}/nvidia-container-runtime/config.toml
-    sed -i -e's,ldconfig\.real,ldconfig,' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
-    sed -i -e's,mode = "auto",mode = "legacy",' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
-    ln -sf nvidia-container-runtime-hook ${D}${bindir}/nvidia-container-toolk
+    ln -sf nvidia-container-runtime-hook ${D}${bindir}/nvidia-container-toolkit
 }
 
 INSANE_SKIP:${PN} += "already-stripped buildpaths"
