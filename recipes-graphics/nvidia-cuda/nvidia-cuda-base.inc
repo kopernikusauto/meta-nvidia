@@ -42,73 +42,47 @@ do_unpack() {
 }
 
 do_install() {
-    
-    echo "Listing WORKDIR contents:"
-    ls -la ${WORKDIR}
-    echo "Listing DL_DIR contents:"
-    ls -la ${DL_DIR}
+    # Define where we expect the CUDA toolkit to be extracted
+    local cuda_extract_dir=${D}${prefix}/cuda
 
+    echo "Checking CUDA installer file..."
     if [ -f ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ]; then
+        echo "CUDA installer found. Proceeding with extraction..."
+
+        # Ensure the CUDA installer is executable
         chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
-        # Create a directory for extraction
-        install -d ${D}${prefix}/cuda
-        
-        install -d ${D}${prefix}/cuda/bin
-        mkdir ${D}${prefix}/cuda/lib64
-        install -d ${D}${prefix}/cuda/lib64
-        install -d ${D}${prefix}/cuda/include
-        install -d ${D}${prefix}/cuda/share
-        install -d ${D}${prefix}/cuda/doc
-        mkdir ${D}${prefix}/cuda/tmp
-        # Extract the installer
 
-        # Ensure target directories exist before copying
-        install -d ${D}${prefix}/bin
-        install -d ${D}${prefix}/lib64
-        install -d ${D}${prefix}/include
-        install -d ${D}${prefix}/share
-        install -d ${D}${prefix}/doc
+        # Create the directory for the CUDA toolkit
+        install -d ${cuda_extract_dir}
 
-        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --extract=${D}${prefix}/cuda
+        # Extract the CUDA toolkit installer contents
+        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --extract=${cuda_extract_dir}
+
+        # Check if extraction was successful
+        if [ "$(ls -A ${cuda_extract_dir})" ]; then
+            echo "Extraction successful. Installing CUDA Toolkit..."
+
+            # Ensure target directories exist
+            install -d ${D}${prefix}/bin
+            install -d ${D}${prefix}/lib64
+            install -d ${D}${prefix}/include
+            install -d ${D}${prefix}/share
+
+            # Copy extracted contents to their respective locations
+            cp -r ${cuda_extract_dir}/bin/* ${D}${prefix}/bin/
+            cp -r ${cuda_extract_dir}/lib64/* ${D}${prefix}/lib64/
+            cp -r ${cuda_extract_dir}/include/* ${D}${prefix}/include/
+            cp -r ${cuda_extract_dir}/share/* ${D}${prefix}/share/
+
+            echo "CUDA Toolkit installation completed."
+        else
+            bbfatal "Extraction failed. CUDA Toolkit installer did not extract any files."
+        fi
     else
-        bbfatal "CUDA installer file not found."
+        bbfatal "CUDA installer file not found in ${DL_DIR}."
     fi
-
-    # # Install binaries, libraries, etc.
-   # Dynamically copy directories if they exist to handle optional components
-    for dir in bin lib64 include share; do
-        if [ -d "${D}${prefix}/cuda/${dir}" ]; then
-            echo "Copying ${dir}..."
-            cp -r ${D}${prefix}/cuda/${dir}/* ${D}${prefix}/${dir}/
-        else
-            echo "Directory ${dir} does not exist, skipping..."
-        fi
-    done
-
-    # Documentation and other directories that may not always be present
-    for comp in DOCS nsight* nvml nvvm extras gds* compute-sanitizer tools src; do
-        if [ -d "${D}${prefix}/cuda/${comp}" ]; then
-            echo "Copying ${comp}..."
-            cp -r ${D}${prefix}/cuda/${comp} ${D}${prefix}/cuda/
-        else
-            echo "${comp} component does not exist, skipping..."
-        fi
-    done
-
-    # Handle individual files like EULA, README, version.json
-    for file in EULA.txt README version.json; do
-        if [ -f "${D}${prefix}/cuda/${file}" ]; then
-            echo "Copying ${file}..."
-            cp ${D}${prefix}/cuda/${file} ${D}${docdir}/cuda/
-        else
-            echo "${file} does not exist, skipping..."
-        fi
-    done
-
-    # Optional: Clean up the extraction directory
-    # Be cautious with this if you need to retain anything in ${D}${prefix}/cuda
-    # rm -rf ${D}${prefix}/cuda
 }
+
 addtask do_custom_fetch before do_fetch
 # addtask do_copy_installer_preinstall before do_install
 
