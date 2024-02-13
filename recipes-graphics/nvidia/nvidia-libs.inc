@@ -72,7 +72,8 @@ do_install:append() {
     ln -sf libnvidia-ml.so.1 ${D}${libdir}/libnvidia-ml.so
 
     ln -sf libvdpau_nvidia.so.${PV} ${D}${libdir}/vdpau/libvdpau_nvidia.so.1
-    ln -sf vdpau/libvdpau_nvidia.so.1 ${D}${libdir}/libvdpau_nvidia.so
+    ln -sf ${D}${libdir}/vdpau/libvdpau_nvidia.so.1 ${D}${libdir}/libvdpau_nvidia.so
+    ln -sf ${D}${libdir}/vdpau/libvdpau_nvidia.so.1 ${D}${libdir}/libvdpau_nvidia.so.1
 
     ln -sf libcuda.so.${PV} ${D}${libdir}/libcuda.so.1
     ln -sf libcuda.so.1 ${D}${libdir}/libcuda.so
