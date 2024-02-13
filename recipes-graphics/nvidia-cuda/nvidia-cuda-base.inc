@@ -44,19 +44,18 @@ do_unpack() {
 do_install() {
     # Define where we expect the CUDA toolkit to be extracted
     local cuda_extract_dir=${D}${prefix}/cuda
-
+    mkdir ${WORKDIR}/tmpdir
     echo "Checking CUDA installer file..."
     if [ -f ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ]; then
         echo "CUDA installer found. Proceeding with installation..."
 
         # Ensure the CUDA installer is executable
         chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
-        mkdir ${D}${prefix}/tmpdir
         # Create the directory for the CUDA toolkit
         install -d ${cuda_extract_dir}
 
         # Install the CUDA toolkit
-        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --installpath=${cuda_extract_dir} --tmpdir=${D}${prefix}/tmpdir --toolkit
+        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --installpath=${cuda_extract_dir} --tmpdir=${WORKDIR}/tmpdir --toolkit
 
         # Check if installation was successful
         if [ "$(ls -A ${cuda_extract_dir})" ]; then
