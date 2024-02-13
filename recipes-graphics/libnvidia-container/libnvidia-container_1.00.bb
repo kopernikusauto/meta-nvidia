@@ -13,7 +13,11 @@ NVIDIA_MODPROBE_EXTRA_CFLAGS ?= "-ffile-prefix-map=${WORKDIR}=/usr/src/debug/${P
 CFLAGS:prepend = " -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc "
 
 export OBJCPY="${OBJCOPY}"
-
+GO_IMPORT = "github.com/NVIDIA/nvidia-container-toolkit"
+SECURITY_LDFLAGS = ""
+LDFLAGS += "-Wl,-z,lazy"
+GO_LINKSHARED = ""
+REQUIRED_DISTRO_FEATURES = "virtualization"
 do_configure:append() {
     # Mark Nvidia modprobe as downloaded
     touch ${S}/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION}/.download_stamp
@@ -49,9 +53,9 @@ do_compile() {
 do_install() {
     oe_runmake install DESTDIR=${D}
     install -d ${D}${sysconfdir}/nvidia-container-runtime
-    #install -m 0644 ${S}/src/${GO_IMPORT}/config/config.toml.ubuntu ${D}${sysconfdir}/nvidia-container-runtime/config.toml
+    install -m 0644 ${S}/src/${GO_IMPORT}/config/config.toml.ubuntu ${D}${sysconfdir}/nvidia-container-runtime/config.toml
     sed -i -e's,ldconfig\.real,ldconfig,' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
-    # sed -i -e's,mode = "auto",mode = "legacy",' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
+    sed -i -e's,mode = "auto",mode = "legacy",' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
     ln -sf nvidia-container-runtime-hook ${D}${bindir}/nvidia-container-toolkit
 }
 
