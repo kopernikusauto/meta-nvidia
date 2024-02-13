@@ -61,6 +61,14 @@ do_install() {
         install -d ${D}${prefix}/cuda/doc
         mkdir ${D}${prefix}/cuda/tmp
         # Extract the installer
+
+        # Ensure target directories exist before copying
+        install -d ${D}${prefix}/bin
+        install -d ${D}${prefix}/lib64
+        install -d ${D}${prefix}/include
+        install -d ${D}${prefix}/share
+        install -d ${D}${prefix}/doc
+
         ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --toolkit --samples --extract=${D}${prefix}/cuda
     else
         bbfatal "CUDA installer file not found."
