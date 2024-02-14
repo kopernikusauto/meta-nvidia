@@ -70,6 +70,7 @@ do_install() {
 
             # Recursively copy all contents to their respective locations
             cp -r ${cuda_extract_dir}/* ${D}${prefix}/cuda/
+            rm -rf ${cuda_extract_dir}
 
             echo "CUDA Toolkit installation completed."
         else
