@@ -85,6 +85,7 @@ addtask do_custom_fetch before do_fetch
 # addtask do_copy_installer_preinstall before do_install
 
 FILES:${PN}:append= "${bindir}/* ${libdir}/* ${includedir}/*"
+FILES:${PN}:append= "${prefix}/cuda ${prefix}"
 
 COMPATIBLE_HOST = "(x86_64).*-linux"
 
