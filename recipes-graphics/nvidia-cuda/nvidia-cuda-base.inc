@@ -92,3 +92,7 @@ COMPATIBLE_HOST = "(x86_64).*-linux"
 
 do_make_scripts[noexec] = "1"
 INSANE_SKIP:${PN}:append = "ldflags already-stripped dev-so"
+
+RDEPENDS:${PN} = "\
+    nvidia \
+    "
