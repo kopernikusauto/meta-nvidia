@@ -29,8 +29,9 @@ do_compile() {
     :
 }
 do_custom_fetch() {
-    wget -P ${DL_DIR} ${SRC_URI}
-    chmod +x ${DL_DIR}/cuda_12.0.1_525.85.12_linux.run
+    # wget -P ${DL_DIR} ${SRC_URI}
+    # chmod +x ${DL_DIR}/cuda_12.0.1_525.85.12_linux.run
+    echo "custom fetch"
 
 }
 
@@ -41,27 +42,31 @@ do_unpack() {
     ls -lah ${WORKDIR}
 }
 
-do_install() {
-    # Define where we expect the CUDA toolkit to be extracted
-    # export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${D}${libdir}"
-    # export LD_LIBRARY_PATH="/lib:/usr/lib:/usr/local/lib:${LD_LIBRARY_PATH}"
-    local cuda_extract_dir=${D}${prefix}/cuda
-    
-    install -d ${WORKDIR}/tmpdir
-    echo "Checking CUDA installer file..."
-    if [ -f ${DL_DIR}/cuda_${PV}_525.85.12_linux.run ]; then
-        echo "CUDA installer found. Proceeding with installation..."
+do_install() {   
+    # Define the source path of the pre-installed CUDA Toolkit
+    local cuda_preinstalled_dir="/opt/cuda-install"
 
-        # Ensure the CUDA installer is executable
-        chmod +x ${DL_DIR}/cuda_${PV}_525.85.12_linux.run
-        # Create the directory for the CUDA toolkit
-        install -d ${cuda_extract_dir}
+    # Ensure the source directory exists
+    if [ ! -d "${cuda_preinstalled_dir}" ]; then
+        bbfatal "Pre-installed CUDA directory does not exist: ${cuda_preinstalled_dir}"
+    fi
 
-        # Install the CUDA toolkit
-        ${DL_DIR}/cuda_${PV}_525.85.12_linux.run --silent --installpath=${cuda_extract_dir} --tmpdir=${WORKDIR}/tmpdir --toolkit --override
+    # Define the destination directory within the Yocto build
+    # This should match the intended path in the target root filesystem
+    local cuda_dest_dir="${D}${prefix}/cuda"
+
+    # Create the destination directory
+    install -d ${cuda_dest_dir}
+
+    # Copy the pre-installed CUDA Toolkit to the destination directory
+    cp -a ${cuda_preinstalled_dir}/* ${cuda_dest_dir}/
+
+    # Ensure executable permissions are correctly set on binaries
+    # Adjust this command as necessary for your specific files and directories
+    find ${cuda_dest_dir} -type f -executable -exec chmod 755 {} \;
 
         # Check if installation was successful
-        if [ "$(ls -A ${cuda_extract_dir})" ]; then
+        if [ "$(ls -A ${cuda_dest_dir})" ]; then
             echo "Installation successful. Copying CUDA Toolkit components..."
 
             # Recursively copy all contents to their respective locations
