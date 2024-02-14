@@ -43,6 +43,7 @@ do_unpack() {
 
 do_install() {
     # Define where we expect the CUDA toolkit to be extracted
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${D}${libdir}"
     local cuda_extract_dir=${D}${prefix}/cuda
     
     install -d ${WORKDIR}/tmpdir
