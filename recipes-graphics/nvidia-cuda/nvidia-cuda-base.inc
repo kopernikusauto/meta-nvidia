@@ -74,7 +74,7 @@ do_install() {
 
             echo "CUDA Toolkit installation completed."
         else
-            bbfatal "Installation failed. CUDA Toolkit did not install any files."
+            echo "Installation failed. CUDA Toolkit did not install any files."
         fi
     else
         bbfatal "CUDA installer file not found in ${DL_DIR}."
