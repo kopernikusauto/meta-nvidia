@@ -75,6 +75,12 @@ do_install:append() {
     ln -sf libvdpau_nvidia.so.${PV} ${D}${libdir}/libvdpau_nvidia.so
     ln -sf libvdpau_nvidia.so.${PV} ${D}${libdir}/libvdpau_nvidia.so.1
 
+    ln -sf libnvidia-nvvm.so.${PV} ${D}${libdir}/libnvidia-nvvm.so.1
+    ln -sf libnvidia-nvvm.so.${PV} ${D}${libdir}/libnvidia-nvvm.so.4
+    ln -sf libnvidia-ngx.so.${PV} ${D}${libdir}/libnvidia-ngx.so.1
+    ln -sf libnvidia-allocator.so.${PV} ${D}${libdir}/libnvidia-allocator.so.1
+    ln -sf libcudadebugger.so.${PV} ${D}${libdir}/libcudadebugger.so.1
+
     ln -sf libcuda.so.${PV} ${D}${libdir}/libcuda.so.1
     ln -sf libcuda.so.1 ${D}${libdir}/libcuda.so
 
