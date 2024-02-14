@@ -63,22 +63,22 @@ do_install() {
 
     # Ensure executable permissions are correctly set on binaries
     # Adjust this command as necessary for your specific files and directories
-    find ${cuda_dest_dir} -type f -executable -exec chmod 755 {} \;
+    # find ${cuda_dest_dir} -type f -executable -exec chmod 755 {} \;
 
-        # Check if installation was successful
-        if [ "$(ls -A ${cuda_dest_dir})" ]; then
-            echo "Installation successful. Copying CUDA Toolkit components..."
+    # Check if installation was successful
+    if [ "$(ls -A ${cuda_dest_dir})" ]; then
+        echo "Installation successful. Copying CUDA Toolkit components..."
 
-            # Recursively copy all contents to their respective locations
-            cp -r ${cuda_extract_dir}/* ${D}${prefix}/cuda/
+        # Recursively copy all contents to their respective locations
+        cp -r ${cuda_extract_dir}/* ${D}${prefix}/cuda/
 
-            echo "CUDA Toolkit installation completed."
-        else
-            bbfatal "Installation failed. CUDA Toolkit did not install any files."
-        fi
+        echo "CUDA Toolkit installation completed."
     else
-        bbfatal "CUDA installer file not found in ${DL_DIR}."
+        bbfatal "Installation failed. CUDA Toolkit did not install any files."
     fi
+else
+    bbfatal "CUDA installer file not found in ${DL_DIR}."
+fi
 }
 
 addtask do_custom_fetch before do_fetch
