@@ -90,4 +90,4 @@ do_install () {
     find ${D}${datadir}/doc -type f -name 'COPYING*' -delete
 }
 
-RDEPENDS:${PN} = "tegra-container-passthrough"
+# RDEPENDS:${PN} = "tegra-container-passthrough"
