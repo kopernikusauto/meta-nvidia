@@ -72,7 +72,9 @@ PASSTHRU_ROOT = "${datadir}/nvidia-container-passthrough"
 EXTRA_OEMAKE = "EXCLUDE_BUILD_FLAGS=1 PASSTHRU_ROOT=${PASSTHRU_ROOT} PLATFORM=${HOST_ARCH} JETSON=TRUE WITH_LIBELF=yes COMPILER=${@d.getVar('CC').split()[0]} REVISION=${SRCREV_libnvidia} ${@build_date(d)} ${PACKAGECONFIG_CONFARGS}"
 
 CFLAGS:prepend = " -I=/usr/include/tirpc-1.2.6 "
-
+SECURITY_LDFLAGS = ""
+LDFLAGS += "-Wl,-z,lazy"
+GO_LINKSHARED = ""
 export OBJCPY="${OBJCOPY}"
 
 # Fix me: Create an independent recipe for nvidia-modprobe
@@ -90,5 +92,7 @@ do_install () {
     # See note about licensing above
     find ${D}${datadir}/doc -type f -name 'COPYING*' -delete
 }
-
+FILES_${PN} += "/usr/local/bin /usr/local/lib"
 # RDEPENDS:${PN} = "tegra-container-passthrough"
+RDEPENDS:${PN}:append = " ldconfig"
+INSANE_SKIP:${PN}-src = "buildpaths"
