@@ -94,5 +94,5 @@ do_install () {
 }
 FILES_${PN} += "/usr/local/bin /usr/local/lib"
 # RDEPENDS:${PN} = "tegra-container-passthrough"
-RDEPENDS:${PN}:append = " ldconfig libtirpc134 ldconfig-native"
+RDEPENDS:${PN}:append = " ldconfig libtirpc126 ldconfig-native"
 INSANE_SKIP:${PN}-src = "buildpaths"
