@@ -21,6 +21,7 @@ do_compile() {
 
 do_install(){
     go_do_install
+    install -d ${D}${bindir}
     install -d ${D}${sysconfdir}/nvidia-container-runtime
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-container-runtime ${D}${bindir}
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-container-runtime-hook ${D}${bindir}
