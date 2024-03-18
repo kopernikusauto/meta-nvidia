@@ -83,6 +83,34 @@ do_configure:append() {
     touch ${S}/deps/src/nvidia-modprobe-${NVIDIA_MODPROBE_VERSION}/.download_stamp
 }
 
+
+do_compile:prepend() {
+    # get lsb_release
+    install -m 0755 /usr/bin/lsb_release ${WORKDIR}/lsb_release
+
+    # Copy nproc from the container's /usr/bin to the working directory
+    install -m 0755 /usr/bin/nproc ${WORKDIR}/nproc
+
+    # Copy bmake from the container's /usr/bin to the working directory
+    install -m 0755 /usr/bin/bmake ${WORKDIR}/bmake
+
+    # Ensure the copied bmake is used during the build
+    export PATH=${WORKDIR}:$PATH
+    
+    #go fix
+    export GOPATH="${WORKDIR}/go"
+    export GOCACHE="${WORKDIR}/go-cache"
+    mkdir -p ${GOPATH} ${GOCACHE}
+}
+
+do_compile:prepend() {
+    export CURL="curl --insecure"
+}
+
+do_compile() {
+    oe_runmake
+}
+
 do_install () {
     oe_runmake install DESTDIR=${D}
     # Remove the development files, as this library is dlopened for
