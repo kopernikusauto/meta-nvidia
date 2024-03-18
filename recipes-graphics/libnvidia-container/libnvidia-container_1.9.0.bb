@@ -61,7 +61,8 @@ EXTRA_OEMAKE = "EXCLUDE_BUILD_FLAGS=1 PLATFORM=${HOST_ARCH} WITH_NVCGO=no WITH_L
                 NVIDIA_MODPROBE_EXTRA_CFLAGS=${NVIDIA_MODPROBE_EXTRA_CFLAGS}"
 NVIDIA_MODPROBE_EXTRA_CFLAGS ?= "-ffile-prefix-map=${WORKDIR}=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR}"
 
-CFLAGS:prepend = " -I=/usr/include/tirpc-1.2.6 "
+# CFLAGS:prepend = " -I=/usr/include/tirpc-1.2.6 "
+CFLAGS:prepend = " -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc "
 
 export OBJCPY="${OBJCOPY}"
 

@@ -56,6 +56,7 @@ S = "${WORKDIR}/git"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG[seccomp] = "WITH_SECCOMP=yes,WITH_SECCOMP=no,libseccomp"
+CFLAGS:prepend = " -I${RECIPE_SYSROOT_NATIVE}/usr/include/tirpc "
 
 def build_date(d):
     import datetime
