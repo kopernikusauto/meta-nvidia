@@ -24,10 +24,10 @@ do_install(){
     install -d ${D}${bindir}
     install -d ${D}${sysconfdir}/nvidia-container-runtime
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-container-runtime ${D}${bindir}
-    install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-container-runtime-hook ${D}${bindir}
+    # install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-container-runtime-hook ${D}${bindir}
     install -m 0644 ${S}/src/${GO_IMPORT}/config/config.toml.ubuntu+jetpack ${D}${sysconfdir}/nvidia-container-runtime/config.toml
     sed -i -e's,ldconfig\.real,ldconfig,' ${D}${sysconfdir}/nvidia-container-runtime/config.toml
-    ln -sf nvidia-container-toolkit ${D}${bindir}/nvidia-container-runtime-hook
+    # ln -sf nvidia-container-toolkit ${D}${bindir}/nvidia-container-runtime-hook
 }
 
 # do_install() {
