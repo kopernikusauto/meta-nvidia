@@ -8,7 +8,7 @@ This recipe builds a Jetson-specific version of the library. \
 "
 HOMEPAGE = "https://github.com/NVIDIA/libnvidia-container"
 
-COMPATIBLE_MACHINE = "(tegra)"
+COMPATIBLE_MACHINE = "(intel-corei7-64)"
 
 DEPENDS = " \
     coreutils-native \
