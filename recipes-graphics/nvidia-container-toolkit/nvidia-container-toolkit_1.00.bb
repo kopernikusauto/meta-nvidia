@@ -31,6 +31,13 @@ do_install() {
     install -m 0755 ${S}/src/${GO_IMPORT}/nvidia-ctk ${D}${bindir}
 
     ln -sf nvidia-container-runtime-hook ${D}${bindir}/nvidia-container-toolkit
+
+    # create config.toml
+    # Ensure the installation directory exists
+    install -d ${D}/etc/nvidia-container-runtime
+    # Install the config.toml file
+    install -m 0644 ${WORKDIR}/config.toml ${D}/etc/nvidia-container-runtime/config.toml
+}
 }
 
 INSANE_SKIP:${PN} += "already-stripped buildpaths"
